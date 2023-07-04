@@ -1,17 +1,19 @@
 const PORT=8000
 const express =require('express')
 const cors =require('cors')
+const morgan = require('morgan')
 const app=express()
+
 app.use(express.json())
 app.use(cors())
+require("dotenv").config();
 
-const API_KEY='Your api key'
-console.log(API_KEY);
+app.use(morgan('dev'));
 app.post('/completions',async(req,res)=>{
     const options ={
         method:"POST",
         headers:{
-            "Authorization":`Bearer ${API_KEY}`,
+            "Authorization":`Bearer ${process.env.API_KEY}`,
             "Content-Type":"application/json"
         },
         body:JSON.stringify({
