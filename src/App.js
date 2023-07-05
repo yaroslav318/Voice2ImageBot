@@ -1,17 +1,23 @@
 import React, { useRef, useEffect, useState } from "react";
+import Modal from "react-modal";
+
+Modal.setAppElement("#root");
 
 function App() {
   const [value, setValue] = useState("");
+  const [modalValue, setModalValue] = useState("");
   const [message, setMessage] = useState(null);
   const [previousChats, setPreviousChats] = useState([]);
   const [currentTitle, setCurrentTitle] = useState("");
-
+  const [isPromptOpen, setIsPromptOpen] = useState(false);
   const chatFeedRef = useRef(null); // Reference to chat feed container
 
   const createNewChat = () => {
+    const chatNumber = previousChats.length; // Generate unique timestamp
+    const uniqueTitle = `Chat ${chatNumber}`;
     setMessage(null);
     setValue("");
-    setCurrentTitle("");
+    setCurrentTitle(uniqueTitle.substring(0,10));
   };
 
   const handleClick = (uniqueTitle) => {
@@ -19,6 +25,29 @@ function App() {
     setMessage(null);
     setValue("");
   };
+
+  const handleRename = (uniqueTitle) => {
+    setIsPromptOpen(true);
+    setModalValue(uniqueTitle);
+  };
+
+  const handlePromptClose = () => {
+    setIsPromptOpen(false);
+  };
+
+  const handlePromptSubmit = () => {
+    if (modalValue.length > 18) {
+      alert("The chat name is too big. Please try a shorter one.");
+    } else {
+      setPreviousChats((prevChats) =>
+        prevChats.map((chat) =>
+          chat.title === currentTitle ? { ...chat, title: modalValue } : chat
+        )
+      );
+      setIsPromptOpen(false);
+    }
+  };
+
 
   const getMessages = async () => {
     const options = {
@@ -125,51 +154,75 @@ function App() {
   return (
     <div className="app">
       <section className="side-bar">
-        <button onClick={createNewChat}>+ New chat</button>
+        <button onClick={createNewChat}>+ New Conversation</button>
         <ul className="history">
-          {uniqueTitles.map((uniqueTitle, index) => (
-            <li key={index} onClick={() => handleClick(uniqueTitle)}>
-            {uniqueTitle}
-          </li>
-        ))}
-      </ul>
-    </section>
-    <section className="main">
-      {!currentTitle && <h1>PoweredGPT</h1>}
-      <ul className="feed">
-        {currentChat.map((chatMessage, index) => (
-          <li key={index}>
-            <p className="role">{chatMessage.role}</p>
-            <pre>
-              <span>{chatMessage.content}</span>
-            </pre>
-          </li>
-        ))}
-        <div ref={chatFeedRef} /> {/* Empty div for scrolling */}
-      </ul>
-      <div className="bottom-section">
-        <div className="input-container">
-          <input
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-            onKeyPress={handleKeyPress}
-          />
+        {uniqueTitles.map((uniqueTitle, index) => (
+  <li key={index} onClick={() => handleClick(uniqueTitle)}>
+    <div className="chat-title-container">
+      <button className="rename" onClick={() => handleRename(uniqueTitle)}>
+        <span>&#9998;</span>
+      </button>
+      <span>{uniqueTitle}</span>
+    </div>
+  </li>
+))}
+        </ul>
+      </section>
+      <section className="main">
+        {!currentTitle ? null : <h1 className="title">INTELLIBOT</h1>}
+        <ul className="feed">
+          {currentChat.map((chatMessage, index) => (
+            <li key={index}>
+              <p className="role">{chatMessage.role}</p>
+              <pre>
+                <span>{chatMessage.content}</span>
+              </pre>
+            </li>
+          ))}
+          <div ref={chatFeedRef} /> {/* Empty div for scrolling */}
+        </ul>
+        <div className="bottom-section">
+          <div className="input-container">
+            <input
+              id="input"
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              onKeyPress={handleKeyPress}
+            />
 
-          {isListening ? (
-            <button onClick={stopListening}>Stop Listening</button>
-          ) : (
-            <button onClick={startListening}>Start Listening</button>
-          )}
+            {isListening ? (
+              <button className="voice_lisenting" onClick={stopListening}>
+                &#127897;
+              </button>
+            ) : (
+              <button className="voice_lisenting" onClick={startListening}>
+                &#127897;
+              </button>
+            )}
 
-          <div id="submit" onClick={getMessages}>
-            &#10146;
+            <div id="submit" onClick={getMessages}>
+              &#10146;
+            </div>
           </div>
+          <p className={"info"}>Made by Rahmath, Hussain, Owais</p>
         </div>
-        <p className={"info"}>Made by Rahmath, Hussain, Owais</p>
-      </div>
-    </section>
+      </section>
+      <Modal isOpen={isPromptOpen} onRequestClose={handlePromptClose} className="custom-modal"
+  overlayClassName="custom-modal-overlay" >
+        <h2>Enter New Title</h2>
+        <input
+          type="text"
+          value={modalValue}
+          onChange={(e) => setModalValue(e.target.value)}
+        />
+        <div >
+    <button onClick={() => handlePromptSubmit(value)}>Submit</button>
+    <button onClick={handlePromptClose}>Cancel</button>
   </div>
-);
+      </Modal>
+    </div>
+  );
 }
 
 export default App;
+
