@@ -172,7 +172,7 @@ function App() {
           ))}
         </ul>
       </section>
-      <section className="main">
+      <section className={`main ${isPromptOpen ? 'blur' : ''}`}>
         {!currentTitle ? null : <h1 className="title">INTELLIBOT</h1>}
         <ul className="feed">
           {currentChat.map((chatMessage, index) => (
