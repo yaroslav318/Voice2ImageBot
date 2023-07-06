@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import Modal from "react-modal";
-
+import "./App.css"; // Import the CSS file for styling
 
 Modal.setAppElement("#root");
 
@@ -12,6 +12,7 @@ function App() {
   const [currentTitle, setCurrentTitle] = useState("");
   const [isPromptOpen, setIsPromptOpen] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const chatFeedRef = useRef(null); // Reference to chat feed container
 
   const createNewChat = () => {
@@ -25,7 +26,6 @@ function App() {
   const handleClick = (uniqueTitle) => {
     setCurrentTitle(uniqueTitle);
     setMessage(null);
-    
   };
 
   const handleRename = (uniqueTitle) => {
@@ -51,6 +51,10 @@ function App() {
   };
 
   const getMessages = async () => {
+    if (!value) return; // Return if the input is empty
+
+    setIsLoading(true);
+
     const options = {
       method: "POST",
       body: JSON.stringify({
@@ -60,6 +64,7 @@ function App() {
         "Content-Type": "application/json",
       },
     };
+
     try {
       const response = await fetch("http://localhost:8000/completions", options);
       const data = await response.json();
@@ -67,6 +72,8 @@ function App() {
       setMessage(data.choices[0].message);
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -119,7 +126,7 @@ function App() {
         setIsListening(true);
       };
 
-      recognition.current.onresult =      (event) => {
+      recognition.current.onresult = (event) => {
         const transcript = Array.from(event.results)
           .map((result) => result[0])
           .map((result) => result.transcript)
@@ -202,29 +209,42 @@ function App() {
           <div ref={chatFeedRef} /> {/* Empty div for scrolling */}
         </ul>
         <div className="bottom-section">
-        <div className={"input-container"}>
-  <input
-    id="input"
-    value={value}
-    onChange={(e) => setValue(e.target.value)}
-    onKeyPress={handleKeyPress}
-    placeholder="Type your message..."
-  />
+          <div className={"input-container"}>
+            <input
+              id="input"
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              onKeyPress={handleKeyPress}
+              placeholder="Type your message..."
+            />
 
-  {isListening ? (
-    <button className="voice_lisenting" onClick={stopListening}>
-      <img className="listen" alt="1" />
-    </button>
-  ) : (
-    <button className="voice_lisenting" onClick={startListening}>
-      <img className="mic" alt="1" />
-    </button>
-  )}
 
-  <div id="submit" onClick={getMessages}>
-    &#10146;
-  </div>
-</div>
+            {isListening ? (
+              <button className="voice_lisenting" onClick={stopListening}>
+                <img className="listen" src="microphone.png" alt="Listen" />
+              </button>
+            ) : (
+              <button className="voice_lisenting" onClick={startListening}>
+                <img className="mic" src="microphone.png" alt="Microphone" />
+              </button>
+            )}
+
+            <div
+              id="submit"
+              className={isLoading ? "loading" : ""}
+              onClick={getMessages}
+            >
+              {isLoading ? (
+                <>
+                  <span className="dot"></span>
+                  <span className="dot"></span>
+                  <span className="dot"></span>
+                </>
+              ) : (
+                <span>&#10146;</span>
+              )}
+            </div>
+          </div>
 
           <p className={"info"}>Made by Rahmath, Hussain, Owais</p>
         </div>
@@ -261,4 +281,3 @@ function App() {
 }
 
 export default App;
-
