@@ -17,7 +17,7 @@ function App() {
     const uniqueTitle = `Chat ${chatNumber}`;
     setMessage(null);
     setValue("");
-    setCurrentTitle(uniqueTitle.substring(0,10));
+    setCurrentTitle(uniqueTitle.substring(0, 10));
   };
 
   const handleClick = (uniqueTitle) => {
@@ -150,22 +150,26 @@ function App() {
       recognition.current.stop();
     }
   };
-
+  const handleDeleteChat = (uniqueTitle) => {
+    setPreviousChats((prevChats) => prevChats.filter((chat) => chat.title !== uniqueTitle));
+  };
   return (
     <div className="app">
       <section className="side-bar">
         <button onClick={createNewChat}>+ New Conversation</button>
         <ul className="history">
-        {uniqueTitles.map((uniqueTitle, index) => (
-  <li key={index} onClick={() => handleClick(uniqueTitle)}>
-    <div className="chat-title-container">
-      <button className="rename" onClick={() => handleRename(uniqueTitle)}>
-        <span>&#9998;</span>
-      </button>
-      <span>{uniqueTitle}</span>
-    </div>
-  </li>
-))}
+          {uniqueTitles.map((uniqueTitle, index) => (
+            <li key={index} onClick={() => handleClick(uniqueTitle)}>
+              <div className="chat-title-container">
+                <button className="rename" onClick={() => handleRename(uniqueTitle)}>
+                  <span>&#128393;</span>
+                </button>
+                <span>{uniqueTitle}</span>
+                <button className="delete" onClick={() => handleDeleteChat(uniqueTitle)}>
+        <span>&#128465;</span></button>
+              </div>
+            </li>
+          ))}
         </ul>
       </section>
       <section className="main">
@@ -208,7 +212,7 @@ function App() {
         </div>
       </section>
       <Modal isOpen={isPromptOpen} onRequestClose={handlePromptClose} className="custom-modal"
-  overlayClassName="custom-modal-overlay" >
+        overlayClassName="custom-modal-overlay" >
         <h2>Enter New Title</h2>
         <input
           type="text"
@@ -216,9 +220,9 @@ function App() {
           onChange={(e) => setModalValue(e.target.value)}
         />
         <div >
-    <button onClick={() => handlePromptSubmit(value)}>Submit</button>
-    <button onClick={handlePromptClose}>Cancel</button>
-  </div>
+          <button onClick={() => handlePromptSubmit(value)}>Submit</button>
+          <button onClick={handlePromptClose}>Cancel</button>
+        </div>
       </Modal>
     </div>
   );
