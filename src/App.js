@@ -13,10 +13,12 @@ function App() {
   const [isPromptOpen, setIsPromptOpen] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const chatFeedRef = useRef(null); // Reference to chat feed container
+  const chatFeedRef = useRef(null);
+  const renameButtonRef = useRef(null);
+ 
 
   const createNewChat = () => {
-    const chatNumber = previousChats.length; // Generate unique timestamp
+    const chatNumber = previousChats.length; 
     const uniqueTitle = `Chat ${chatNumber}`;
     setMessage(null);
     setValue("");
@@ -106,7 +108,7 @@ function App() {
     new Set(previousChats.map((previousChat) => previousChat.title))
   );
 
-  const handleKeyPress = (e) => {
+  const handlekeyPress = (e) => {
     if (e.key === "Enter") {
       getMessages();
     }
@@ -168,7 +170,17 @@ function App() {
   const handleAlertClose = () => {
     setIsAlertOpen(false);
   };
-
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      if (isPromptOpen) {
+        e.preventDefault(); // Prevent form submission
+        handlePromptSubmit(); // Programmatically click the "Rename" button
+      } else {
+        getMessages();
+      }
+    }
+  };
+  
   return (
     <div className="app">
       <section className="side-bar">
@@ -214,7 +226,7 @@ function App() {
               id="input"
               value={value}
               onChange={(e) => setValue(e.target.value)}
-              onKeyPress={handleKeyPress}
+              onKeyPress={handlekeyPress}
               placeholder="Type your message..."
             />
 
@@ -260,9 +272,11 @@ function App() {
           type="text"
           value={modalValue}
           onChange={(e) => setModalValue(e.target.value)}
+          onKeyPress={handleKeyPress}
         />
         <div>
-          <button onClick={() => handlePromptSubmit(value)}>Rename</button>
+        <button  onClick={() => handlePromptSubmit(value)}>Rename</button>
+
           <button onClick={handlePromptClose}>Cancel</button>
         </div>
       </Modal>
