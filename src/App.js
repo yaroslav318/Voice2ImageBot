@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import Modal from "react-modal";
 
+
 Modal.setAppElement("#root");
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
   const [previousChats, setPreviousChats] = useState([]);
   const [currentTitle, setCurrentTitle] = useState("");
   const [isPromptOpen, setIsPromptOpen] = useState(false);
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
   const chatFeedRef = useRef(null); // Reference to chat feed container
 
   const createNewChat = () => {
@@ -23,7 +25,7 @@ function App() {
   const handleClick = (uniqueTitle) => {
     setCurrentTitle(uniqueTitle);
     setMessage(null);
-    setValue("");
+    
   };
 
   const handleRename = (uniqueTitle) => {
@@ -36,8 +38,8 @@ function App() {
   };
 
   const handlePromptSubmit = () => {
-    if (modalValue.length > 18) {
-      alert("The chat name is too big. Please try a shorter one.");
+    if (modalValue.length > 14) {
+      setIsAlertOpen(true);
     } else {
       setPreviousChats((prevChats) =>
         prevChats.map((chat) =>
@@ -47,7 +49,6 @@ function App() {
       setIsPromptOpen(false);
     }
   };
-
 
   const getMessages = async () => {
     const options = {
@@ -118,7 +119,7 @@ function App() {
         setIsListening(true);
       };
 
-      recognition.current.onresult = (event) => {
+      recognition.current.onresult =      (event) => {
         const transcript = Array.from(event.results)
           .map((result) => result[0])
           .map((result) => result.transcript)
@@ -150,9 +151,17 @@ function App() {
       recognition.current.stop();
     }
   };
+
   const handleDeleteChat = (uniqueTitle) => {
-    setPreviousChats((prevChats) => prevChats.filter((chat) => chat.title !== uniqueTitle));
+    setPreviousChats((prevChats) =>
+      prevChats.filter((chat) => chat.title !== uniqueTitle)
+    );
   };
+
+  const handleAlertClose = () => {
+    setIsAlertOpen(false);
+  };
+
   return (
     <div className="app">
       <section className="side-bar">
@@ -161,19 +170,26 @@ function App() {
           {uniqueTitles.map((uniqueTitle, index) => (
             <li key={index} onClick={() => handleClick(uniqueTitle)}>
               <div className="chat-title-container">
-                <button className="rename" onClick={() => handleRename(uniqueTitle)}>
+                <button
+                  className="rename"
+                  onClick={() => handleRename(uniqueTitle)}
+                >
                   <span>&#128393;</span>
                 </button>
                 <span>{uniqueTitle}</span>
-                <button className="delete" onClick={() => handleDeleteChat(uniqueTitle)}>
-        <span>&#128465;</span></button>
+                <button
+                  className="delete"
+                  onClick={() => handleDeleteChat(uniqueTitle)}
+                >
+                  <span>&#128465;</span>
+                </button>
               </div>
             </li>
           ))}
         </ul>
       </section>
-      <section className={`main ${isPromptOpen ? 'blur' : ''}`}>
-        {!currentTitle ? null : <h1 className="title">INTELLIBOT</h1>}
+      <section className={`main ${isPromptOpen ? "blur" : ""}`}>
+        {<h1 className="title">INTELLIBOT</h1>}
         <ul className="feed">
           {currentChat.map((chatMessage, index) => (
             <li key={index}>
@@ -186,43 +202,59 @@ function App() {
           <div ref={chatFeedRef} /> {/* Empty div for scrolling */}
         </ul>
         <div className="bottom-section">
-          <div className="input-container">
-            <input
-              id="input"
-              value={value}
-              onChange={(e) => setValue(e.target.value)}
-              onKeyPress={handleKeyPress}
-            />
+        <div className={"input-container"}>
+  <input
+    id="input"
+    value={value}
+    onChange={(e) => setValue(e.target.value)}
+    onKeyPress={handleKeyPress}
+    placeholder="Type your message..."
+  />
 
-            {isListening ? (
-              <button className="voice_lisenting" onClick={stopListening}>
-                &#127897;
-              </button>
-            ) : (
-              <button className="voice_lisenting" onClick={startListening}>
-                &#127897;
-              </button>
-            )}
+  {isListening ? (
+    <button className="voice_lisenting" onClick={stopListening}>
+      <img className="listen" alt="1" />
+    </button>
+  ) : (
+    <button className="voice_lisenting" onClick={startListening}>
+      <img className="mic" alt="1" />
+    </button>
+  )}
 
-            <div id="submit" onClick={getMessages}>
-              &#10146;
-            </div>
-          </div>
+  <div id="submit" onClick={getMessages}>
+    &#10146;
+  </div>
+</div>
+
           <p className={"info"}>Made by Rahmath, Hussain, Owais</p>
         </div>
       </section>
-      <Modal isOpen={isPromptOpen} onRequestClose={handlePromptClose} className="custom-modal"
-        overlayClassName="custom-modal-overlay" >
+      <Modal
+        isOpen={isPromptOpen}
+        onRequestClose={handlePromptClose}
+        className="custom-modal"
+        overlayClassName="custom-modal-overlay"
+      >
         <h2>Enter New Title</h2>
         <input
           type="text"
           value={modalValue}
           onChange={(e) => setModalValue(e.target.value)}
         />
-        <div >
-          <button onClick={() => handlePromptSubmit(value)}>Submit</button>
+        <div>
+          <button onClick={() => handlePromptSubmit(value)}>Rename</button>
           <button onClick={handlePromptClose}>Cancel</button>
         </div>
+      </Modal>
+      <Modal
+        isOpen={isAlertOpen}
+        onRequestClose={handleAlertClose}
+        className="custom-modal"
+        overlayClassName="custom-modal-overlay"
+      >
+        <h2>Alert</h2>
+        <p className="alert">The chat name is too big. Please try a shorter one.</p>
+        <button onClick={handleAlertClose}>OK</button>
       </Modal>
     </div>
   );

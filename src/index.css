@@ -146,7 +146,7 @@ input {
   z-index: 1;
 }
 input {
-  opacity: 0;
+  
   transition: opacity 1s ease-in-out;
 }
 input:hover {
@@ -161,17 +161,7 @@ input:not(:placeholder-shown) {
   opacity: 1;
 }
 
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.03);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
+
 
 .history {
   padding: 25px;
@@ -187,7 +177,7 @@ input:not(:placeholder-shown) {
   border-bottom-width: medium;
   background-color: transparent;
   width: 90%;
-  height: 5%;
+  height: 7%;
   padding: 20px;
   margin: 20px 40px 20px 0px;
   border-radius: 20px;
@@ -202,6 +192,11 @@ input:not(:placeholder-shown) {
   box-shadow: 0 15px 20px rgba(245, 242, 242, 0.2);
   transform: translateX(-10%);
   border: solid 2px rgba(43, 16, 109, 0.5);
+}
+.alert{
+  color: #e6e8ec;
+  font-size: medium;
+  font-weight: bold;
 }
 
 #submit {
@@ -232,7 +227,7 @@ input:not(:placeholder-shown) {
   height: 60px;
   cursor: pointer;
   background-color: transparent;
-  border-color: black;
+  border-color: transparent;
   color: rgb(220, 213, 213);
   border-radius: 15px;
   width: 50px;
@@ -240,12 +235,25 @@ input:not(:placeholder-shown) {
   transition: all 0.5s ease;
   left: auto;
   right: -55px;
-  border-width: 4px;
+  
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
+.listen{
+  content: url(podcast.gif);
+  height: 50px;
+  mix-blend-mode: multiply;
+}
+.listen:hover{
+  background-color: transparent;
+  background: none;
+  mix-blend-mode: multiply;
+}
+.mic{
+  height:30px;
+  content: url(microphone.png);
+}
 .voice_lisenting:hover {
   transform: scale(1.1);
   color: #ffa85d;
@@ -413,7 +421,7 @@ span {
 .custom-modal input {
   position: relative;
   padding: 10px 0px;
-  padding-inline-start: 10px;
+  text-align: center;
   border-radius: 5px;
   color: white;
   border: 1px solid #ccc;
