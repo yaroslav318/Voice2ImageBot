@@ -40,7 +40,7 @@ function App() {
   };
 
   const handlePromptSubmit = () => {
-    if (modalValue.length > 13) {
+    if (modalValue.length > 15) {
       setIsAlertOpen(true);
     } else {
       setPreviousChats((prevChats) =>
