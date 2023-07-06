@@ -11,14 +11,14 @@ function App() {
   const [previousChats, setPreviousChats] = useState([]);
   const [currentTitle, setCurrentTitle] = useState("");
   const [isPromptOpen, setIsPromptOpen] = useState(false);
+  const [isDeletePromptOpen, setIsDeletePromptOpen] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const chatFeedRef = useRef(null);
   const renameButtonRef = useRef(null);
- 
 
   const createNewChat = () => {
-    const chatNumber = previousChats.length; 
+    const chatNumber = previousChats.length;
     const uniqueTitle = `Chat ${chatNumber}`;
     setMessage(null);
     setValue("");
@@ -40,7 +40,7 @@ function App() {
   };
 
   const handlePromptSubmit = () => {
-    if (modalValue.length > 14) {
+    if (modalValue.length > 13) {
       setIsAlertOpen(true);
     } else {
       setPreviousChats((prevChats) =>
@@ -108,9 +108,14 @@ function App() {
     new Set(previousChats.map((previousChat) => previousChat.title))
   );
 
-  const handlekeyPress = (e) => {
+  const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      getMessages();
+      if (isPromptOpen) {
+        e.preventDefault(); // Prevent form submission
+        handlePromptSubmit(); // Programmatically click the "Rename" button
+      } else {
+        getMessages();
+      }
     }
   };
 
@@ -162,25 +167,30 @@ function App() {
   };
 
   const handleDeleteChat = (uniqueTitle) => {
+    setCurrentTitle(uniqueTitle);
+    setIsDeletePromptOpen(true);
+  };
+
+  const handleDeletePromptClose = () => {
+    setIsDeletePromptOpen(false);
+  };
+
+  const handleDeleteConfirm = () => {
     setPreviousChats((prevChats) =>
-      prevChats.filter((chat) => chat.title !== uniqueTitle)
+      prevChats.filter((chat) => chat.title !== currentTitle)
     );
+    setIsDeletePromptOpen(false);
   };
 
   const handleAlertClose = () => {
     setIsAlertOpen(false);
   };
-  const handleKeyPress = (e) => {
+
+  const handlekeyPress = (e) => {
     if (e.key === "Enter") {
-      if (isPromptOpen) {
-        e.preventDefault(); // Prevent form submission
-        handlePromptSubmit(); // Programmatically click the "Rename" button
-      } else {
-        getMessages();
-      }
+      getMessages();
     }
   };
-  
   return (
     <div className="app">
       <section className="side-bar">
@@ -207,7 +217,7 @@ function App() {
           ))}
         </ul>
       </section>
-      <section className={`main ${isPromptOpen ? "blur" : ""}`}>
+      <section className={`main ${isPromptOpen || isDeletePromptOpen ? "blur" : ""}`}>
         {<h1 className="title">INTELLIBOT</h1>}
         <ul className="feed">
           {currentChat.map((chatMessage, index) => (
@@ -229,69 +239,79 @@ function App() {
               onKeyPress={handlekeyPress}
               placeholder="Type your message..."
             />
-
-
             {isListening ? (
               <button className="voice_lisenting" onClick={stopListening}>
                 <img className="listen" src="microphone.png" alt="Listen" />
               </button>
+                     ) : (
+            <button className="voice_lisenting" onClick={startListening}>
+              <img className="mic" src="microphone.png" alt="Microphone" />
+            </button>
+          )}
+
+          <div
+            id="submit"
+            className={isLoading ? "loading" : ""}
+            onClick={getMessages}
+          >
+            {isLoading ? (
+              <>
+                <span className="dot"></span>
+                <span className="dot"></span>
+                <span className="dot"></span>
+              </>
             ) : (
-              <button className="voice_lisenting" onClick={startListening}>
-                <img className="mic" src="microphone.png" alt="Microphone" />
-              </button>
+              <span>&#10146;</span>
             )}
-
-            <div
-              id="submit"
-              className={isLoading ? "loading" : ""}
-              onClick={getMessages}
-            >
-              {isLoading ? (
-                <>
-                  <span className="dot"></span>
-                  <span className="dot"></span>
-                  <span className="dot"></span>
-                </>
-              ) : (
-                <span>&#10146;</span>
-              )}
-            </div>
           </div>
-
-          <p className={"info"}>Made by Rahmath, Hussain, Owais</p>
         </div>
-      </section>
-      <Modal
-        isOpen={isPromptOpen}
-        onRequestClose={handlePromptClose}
-        className="custom-modal"
-        overlayClassName="custom-modal-overlay"
-      >
-        <h2>Enter New Title</h2>
-        <input
-          type="text"
-          value={modalValue}
-          onChange={(e) => setModalValue(e.target.value)}
-          onKeyPress={handleKeyPress}
-        />
-        <div>
-        <button  onClick={() => handlePromptSubmit(value)}>Rename</button>
 
-          <button onClick={handlePromptClose}>Cancel</button>
-        </div>
-      </Modal>
-      <Modal
-        isOpen={isAlertOpen}
-        onRequestClose={handleAlertClose}
-        className="custom-modal"
-        overlayClassName="custom-modal-overlay"
-      >
-        <h2>Alert</h2>
-        <p className="alert">The chat name is too big. Please try a shorter one.</p>
-        <button onClick={handleAlertClose}>OK</button>
-      </Modal>
-    </div>
-  );
+        <p className={"info"}>Made by Rahmath, Hussain, Owais</p>
+      </div>
+    </section>
+    <Modal
+      isOpen={isPromptOpen}
+      onRequestClose={handlePromptClose}
+      className="custom-modal"
+      overlayClassName="custom-modal-overlay"
+    >
+      <h2>Enter New Title</h2>
+      <input
+        type="text"
+        value={modalValue}
+        onChange={(e) => setModalValue(e.target.value)}
+        onKeyPress={handleKeyPress}
+      />
+      <div>
+        <button onClick={handlePromptSubmit}>Rename</button>
+        <button onClick={handlePromptClose}>Cancel</button>
+      </div>
+    </Modal>
+    <Modal
+      isOpen={isDeletePromptOpen}
+      onRequestClose={handleDeletePromptClose}
+      className="custom-modal"
+      overlayClassName="custom-modal-overlay"
+    >
+      <h2>Are you sure?</h2>
+      <p className="delete-prompt">Do you want to delete this chat?</p>
+      <div>
+        <button onClick={handleDeleteConfirm}>Yes</button>
+        <button onClick={handleDeletePromptClose}>No</button>
+      </div>
+    </Modal>
+    <Modal
+      isOpen={isAlertOpen}
+      onRequestClose={handleAlertClose}
+      className="custom-modal"
+      overlayClassName="custom-modal-overlay"
+    >
+      <h2>Alert</h2>
+      <p className="alert">The chat name is too big. Please try a shorter one.The limit is upto 13 characters.</p>
+      <button onClick={handleAlertClose}>OK</button>
+    </Modal>
+  </div>
+);
 }
 
 export default App;

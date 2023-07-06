@@ -397,7 +397,7 @@ span {
   font-size: 28px;
   margin-left: 0px;
   margin-right: 0px;
-
+padding-right: 0%;
   position: relative;
   z-index: 1;
 }
@@ -421,7 +421,10 @@ span {
 
   transform: scale(1.7);
 }
-
+.delete-prompt{
+  color: white;
+  font-weight: bold;
+}
 /* Modal styles */
 .custom-modal {
   position: absolute;
@@ -479,3 +482,4 @@ span {
 .custom-modal button:not(:last-child) {
   margin-right: 10px;
 }
+
