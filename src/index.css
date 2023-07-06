@@ -148,7 +148,6 @@ input {
   z-index: 1;
 }
 input {
-  
   transition: opacity 1s ease-in-out;
 }
 input:hover {
@@ -180,17 +179,16 @@ input::placeholder {
   border: solid 0.5px rgba(246, 243, 243, 0.984);
   border-bottom-width: medium;
   background-color: transparent;
-  width: 90%;
+  width: 94%;
   color: white;
   font-weight: bold;
   height: 7%;
   text-transform: capitalize;
   padding: 20px;
-  margin: 20px 40px 20px 0px;
+  margin: 20px 40px 20px -10px;
   border-radius: 20px;
   transition: transform 0.4s ease-in-out;
 }
-
 
 .history li:hover {
   color: rgb(8, 8, 8);
@@ -199,7 +197,7 @@ input::placeholder {
   transform: translateX(-10%);
   border: solid 2px rgba(43, 16, 109, 0.5);
 }
-.alert{
+.alert {
   color: #e6e8ec;
   font-size: medium;
   font-weight: bold;
@@ -246,19 +244,25 @@ input::placeholder {
   justify-content: center;
   align-items: center;
 }
-.listen{
-  content: url(podcast.gif);
+.listen {
+  content: url(./assets/images/podcast.gif);
   height: 50px;
   mix-blend-mode: multiply;
 }
-.listen:hover{
+.listen:hover {
   background-color: transparent;
   background: none;
   mix-blend-mode: multiply;
 }
-.mic{
-  height:30px;
-  content: url(microphone.png);
+.renameimg {
+  content: url(./assets/images/renameee.png);
+  mix-blend-mode: multiply;
+  height: 28px;
+  padding: 0;
+}
+.mic {
+  height: 30px;
+  content: url(./assets/images/microphone.png);
 }
 .voice_lisenting:hover {
   transform: scale(1.1);
@@ -326,7 +330,6 @@ span {
   border-radius: 50%;
   animation: dotAnimation 1s infinite ease-in-out;
   margin-right: 4px;
-  
 }
 
 @keyframes dotAnimation {
@@ -357,8 +360,8 @@ span {
   align-items: center;
   background-color: transparent;
   border: none;
-  padding: 0px 10px 0px 0px;
-  margin-left: 10px;
+  padding: 0px;
+  margin-left: 5px;
   margin-right: 0px;
 }
 
@@ -387,6 +390,8 @@ span {
   align-items: center;
   padding: 15px;
   margin: -30px;
+  justify-content: space-between;
+  width: 115%;
 }
 .delete {
   box-shadow: none;
@@ -397,7 +402,7 @@ span {
   font-size: 28px;
   margin-left: 0px;
   margin-right: 0px;
-padding-right: 0%;
+  padding-right: 0%;
   position: relative;
   z-index: 1;
 }
@@ -421,9 +426,14 @@ padding-right: 0%;
 
   transform: scale(1.7);
 }
-.delete-prompt{
+.delete-prompt {
   color: white;
   font-weight: bold;
+}
+.deleteimg {
+  content: url(./assets/images/deleteeeee.png);
+  mix-blend-mode: multiply;
+  margin-top: 20%;
 }
 /* Modal styles */
 .custom-modal {
@@ -482,4 +492,3 @@ padding-right: 0%;
 .custom-modal button:not(:last-child) {
   margin-right: 10px;
 }
-
