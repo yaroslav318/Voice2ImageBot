@@ -68,7 +68,10 @@ function App() {
     };
 
     try {
-      const response = await fetch("http://localhost:8000/completions", options);
+      const response = await fetch(
+        "http://localhost:8000/completions",
+        options
+      );
       const data = await response.json();
       console.log(data);
       setMessage(data.choices[0].message);
@@ -124,8 +127,8 @@ function App() {
 
   useEffect(() => {
     if ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) {
-      recognition.current =
-        new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.current = new (window.SpeechRecognition ||
+        window.webkitSpeechRecognition)();
       recognition.current.continuous = true;
       recognition.current.interimResults = true;
 
@@ -203,21 +206,23 @@ function App() {
                   className="rename"
                   onClick={() => handleRename(uniqueTitle)}
                 >
-                  <span>&#128393;</span>
+                  <img className="renameimg" alt="rename button" />
                 </button>
                 <span>{uniqueTitle}</span>
                 <button
                   className="delete"
                   onClick={() => handleDeleteChat(uniqueTitle)}
                 >
-                  <span>&#128465;</span>
+                  <img className="deleteimg" alt="delete button"/>
                 </button>
               </div>
             </li>
           ))}
         </ul>
       </section>
-      <section className={`main ${isPromptOpen || isDeletePromptOpen ? "blur" : ""}`}>
+      <section
+        className={`main ${isPromptOpen || isDeletePromptOpen ? "blur" : ""}`}
+      >
         {<h1 className="title">INTELLIBOT</h1>}
         <ul className="feed">
           {currentChat.map((chatMessage, index) => (
@@ -241,77 +246,80 @@ function App() {
             />
             {isListening ? (
               <button className="voice_lisenting" onClick={stopListening}>
-                <img className="listen" src="microphone.png" alt="Listen" />
+                <img className="listen" alt="Listen" />
               </button>
-                     ) : (
-            <button className="voice_lisenting" onClick={startListening}>
-              <img className="mic" src="microphone.png" alt="Microphone" />
-            </button>
-          )}
-
-          <div
-            id="submit"
-            className={isLoading ? "loading" : ""}
-            onClick={getMessages}
-          >
-            {isLoading ? (
-              <>
-                <span className="dot"></span>
-                <span className="dot"></span>
-                <span className="dot"></span>
-              </>
             ) : (
-              <span>&#10146;</span>
+              <button className="voice_lisenting" onClick={startListening}>
+                <img className="mic" alt="Microphone" />
+              </button>
             )}
-          </div>
-        </div>
 
-        <p className={"info"}>Made by Rahmath, Hussain, Owais</p>
-      </div>
-    </section>
-    <Modal
-      isOpen={isPromptOpen}
-      onRequestClose={handlePromptClose}
-      className="custom-modal"
-      overlayClassName="custom-modal-overlay"
-    >
-      <h2>Enter New Title</h2>
-      <input
-        type="text"
-        value={modalValue}
-        onChange={(e) => setModalValue(e.target.value)}
-        onKeyPress={handleKeyPress}
-      />
-      <div>
-        <button onClick={handlePromptSubmit}>Rename</button>
-        <button onClick={handlePromptClose}>Cancel</button>
-      </div>
-    </Modal>
-    <Modal
-      isOpen={isDeletePromptOpen}
-      onRequestClose={handleDeletePromptClose}
-      className="custom-modal"
-      overlayClassName="custom-modal-overlay"
-    >
-      <h2>Are you sure?</h2>
-      <p className="delete-prompt">Do you want to delete this chat?</p>
-      <div>
-        <button onClick={handleDeleteConfirm}>Yes</button>
-        <button onClick={handleDeletePromptClose}>No</button>
-      </div>
-    </Modal>
-    <Modal
-      isOpen={isAlertOpen}
-      onRequestClose={handleAlertClose}
-      className="custom-modal"
-      overlayClassName="custom-modal-overlay"
-    >
-      <h2>Alert</h2>
-      <p className="alert">The chat name is too big. Please try a shorter one.The limit is upto 13 characters.</p>
-      <button onClick={handleAlertClose}>OK</button>
-    </Modal>
-  </div>
-);
+            <div
+              id="submit"
+              className={isLoading ? "loading" : ""}
+              onClick={getMessages}
+            >
+              {isLoading ? (
+                <>
+                  <span className="dot"></span>
+                  <span className="dot"></span>
+                  <span className="dot"></span>
+                </>
+              ) : (
+                <span>&#10146;</span>
+              )}
+            </div>
+          </div>
+
+          <p className={"info"}>Made by Rahmath, Hussain, Owais</p>
+        </div>
+      </section>
+      <Modal
+        isOpen={isPromptOpen}
+        onRequestClose={handlePromptClose}
+        className="custom-modal"
+        overlayClassName="custom-modal-overlay"
+      >
+        <h2>Enter New Title</h2>
+        <input
+          type="text"
+          value={modalValue}
+          onChange={(e) => setModalValue(e.target.value)}
+          onKeyPress={handleKeyPress}
+        />
+        <div>
+          <button onClick={handlePromptSubmit}>Rename</button>
+          <button onClick={handlePromptClose}>Cancel</button>
+        </div>
+      </Modal>
+      <Modal
+        isOpen={isDeletePromptOpen}
+        onRequestClose={handleDeletePromptClose}
+        className="custom-modal"
+        overlayClassName="custom-modal-overlay"
+      >
+        <h2>Are you sure?</h2>
+        <p className="delete-prompt">Do you want to delete this chat?</p>
+        <div>
+          <button onClick={handleDeleteConfirm}>Yes</button>
+          <button onClick={handleDeletePromptClose}>No</button>
+        </div>
+      </Modal>
+      <Modal
+        isOpen={isAlertOpen}
+        onRequestClose={handleAlertClose}
+        className="custom-modal"
+        overlayClassName="custom-modal-overlay"
+      >
+        <h2>Alert</h2>
+        <p className="alert">
+          The chat name is too big. Please try a shorter one.The limit is upto
+          13 characters.
+        </p>
+        <button onClick={handleAlertClose}>OK</button>
+      </Modal>
+    </div>
+  );
 }
 
 export default App;
