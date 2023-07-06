@@ -15,11 +15,10 @@ body {
   background-color: #343541;
   display: flex;
   flex-direction: row-reverse;
-
 }
-.title{
-  font-family:"Ysabeau+SC",sans-serif;
-  font-size:30px; 
+.title {
+  font-family: "Ysabeau+SC", sans-serif;
+  font-size: 30px;
   padding-bottom: 18px;
 }
 .side-bar {
@@ -30,8 +29,13 @@ body {
   flex-direction: column;
 }
 
+.blur {
+  filter: blur(5px); /* Apply the blur effect */
+  pointer-events: none; /* Disable pointer events on the blurred section */
+}
+
 .main {
-  background: linear-gradient(to right,  #178888,  #0a5d4f	,  #2a5727		);
+  background: linear-gradient(to right, #178888, #0a5d4f, #2a5727);
   height: 100vh;
   font-family: "Narnoor";
   display: flex;
@@ -172,7 +176,6 @@ input:not(:placeholder-shown) {
 .history {
   padding: 25px;
   margin: 10px;
-  
 }
 .history::-webkit-scrollbar {
   display: none;
@@ -208,7 +211,7 @@ input:not(:placeholder-shown) {
   font-size: 35px;
   height: 45px;
   cursor: pointer;
-  background-color: transparent; 
+  background-color: transparent;
   color: rgb(215, 209, 209);
   border-radius: 8px;
   width: 50px;
@@ -221,7 +224,6 @@ input:not(:placeholder-shown) {
   color: #0b0b0b;
   background-color: #faf190;
 }
-
 
 .voice_lisenting {
   position: absolute;
@@ -256,13 +258,12 @@ input:not(:placeholder-shown) {
   width: 90%;
   padding: 0;
   top: -50px;
-  
 }
 .feed::-webkit-scrollbar {
   display: none;
 }
 .feed li {
-  background: linear-gradient(to right,#0e4c49, #174b48,#0f897d);
+  background: linear-gradient(to right, #0e4c49, #174b48, #0f897d);
   width: 90%;
   padding: 1px 20px 1px 20px;
   margin: 10px 0;
@@ -306,15 +307,15 @@ span {
   letter-spacing: 0px;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
   position: relative;
-  color :#fff;
+  color: #fff;
   overflow: hidden;
-  box-shadow:none;
+  box-shadow: none;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
   background-color: transparent;
   border: none;
-  padding:0px 10px 0px 0px;
+  padding: 0px 10px 0px 0px;
   margin-left: 10px;
   margin-right: 0px;
 }
@@ -335,7 +336,7 @@ span {
   background-color: transparent;
   /* Replace with the path to your pen icon */
   background-repeat: no-repeat;
-  
+
   margin-right: 15px;
 }
 
@@ -344,11 +345,9 @@ span {
   align-items: center;
   padding: 15px;
   margin: -30px;
-  
-  
 }
 .delete {
-  box-shadow:none;
+  box-shadow: none;
   background: none;
   border: none;
   color: #1cfc0c;
@@ -377,10 +376,9 @@ span {
   color: red;
   box-shadow: none;
   background-color: transparent;
-  
+
   transform: scale(1.7);
 }
-
 
 /* Modal styles */
 .custom-modal {
