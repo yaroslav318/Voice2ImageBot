@@ -170,6 +170,7 @@ input::placeholder {
   padding: 25px;
   margin: 10px;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 .history::-webkit-scrollbar {
   display: none;
@@ -183,20 +184,21 @@ input::placeholder {
   width: 94%;
   color: white;
   font-weight: bold;
-  max-height: 7%;
+  max-height: 3% !important;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   text-transform: capitalize;
   padding: 20px;
-  
   margin: 20px 40px 20px -10px;
   border-radius: 20px;
   transition: transform 0.4s ease-in-out;
 }
-
 .history li:hover {
   color: rgb(8, 8, 8);
   background-color: #c6ad71;
   box-shadow: 0 15px 20px rgba(245, 242, 242, 0.2);
-  transform: translateX(-10%);
+  transform: translateX(-7%);
   border: solid 2px rgba(43, 16, 109, 0.5);
 }
 .alert {
