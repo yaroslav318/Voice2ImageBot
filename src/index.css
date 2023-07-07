@@ -374,7 +374,7 @@ span {
   box-shadow: none;
   background-color: transparent;
   transform: translateX(-10%);
-  transform: scale(1.5);
+  transform: scale(1.3);
 }
 
 .rename:before {
@@ -429,7 +429,7 @@ span {
   box-shadow: none;
   background-color: transparent;
 
-  transform: scale(1.7);
+  transform: scale(1.4);
 }
 .delete-prompt {
   color: white;
