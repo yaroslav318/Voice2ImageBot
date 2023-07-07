@@ -75,12 +75,20 @@ function App() {
       const data = await response.json();
       console.log(data);
       setMessage(data.choices[0].message);
+      speak(data.choices[0].message.content); // Read aloud the response content
     } catch (error) {
       console.error(error);
     } finally {
       setIsLoading(false);
     }
   };
+
+  const speak = (content) => {
+    const speechSynthesis = window.speechSynthesis;
+    const utterance = new SpeechSynthesisUtterance(content);
+    speechSynthesis.speak(utterance);
+  };
+  
 
   useEffect(() => {
     if (message) {
@@ -194,6 +202,7 @@ function App() {
       getMessages();
     }
   };
+
   return (
     <div className="app">
       <section className="side-bar">
