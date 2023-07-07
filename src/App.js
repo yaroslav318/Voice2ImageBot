@@ -14,8 +14,9 @@ function App() {
   const [isDeletePromptOpen, setIsDeletePromptOpen] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isSpeaking] = useState(false);
   const chatFeedRef = useRef(null);
-  const renameButtonRef = useRef(null);
+  
 
   const createNewChat = () => {
     const chatNumber = previousChats.length;
@@ -75,7 +76,10 @@ function App() {
       const data = await response.json();
       console.log(data);
       setMessage(data.choices[0].message);
-      speak(data.choices[0].message.content); // Read aloud the response content
+      if (isSpeaking) {
+        stopSpeaking();
+      }
+      // Read aloud the response content
     } catch (error) {
       console.error(error);
     } finally {
@@ -86,9 +90,32 @@ function App() {
   const speak = (content) => {
     const speechSynthesis = window.speechSynthesis;
     const utterance = new SpeechSynthesisUtterance(content);
+    utterance.onend = () => {
+      stopSpeaking();
+    };
     speechSynthesis.speak(utterance);
+
+    // Update the speaking state for the current chat message
+    setPreviousChats((prevChats) =>
+      prevChats.map((chat) =>
+        chat.title === currentTitle ? { ...chat, isSpeaking: true } : chat
+      )
+    );
   };
-  
+
+  const stopSpeaking = () => {
+    const speechSynthesis = window.speechSynthesis;
+    speechSynthesis.cancel();
+
+    // Update the speaking state for the current chat message
+    setPreviousChats((prevChats) =>
+      prevChats.map((chat) =>
+        chat.title === currentTitle ? { ...chat, isSpeaking: false } : chat
+      )
+    );
+  };
+
+
 
   useEffect(() => {
     if (message) {
@@ -105,6 +132,7 @@ function App() {
           content: message.content,
         },
       ]);
+
     }
   }, [message]);
 
@@ -223,7 +251,7 @@ function App() {
                   className="delete"
                   onClick={() => handleDeleteChat(uniqueTitle)}
                 >
-                  <img className="deleteimg" alt="delete button"/>
+                  <img className="deleteimg" alt="delete button" />
                 </button>
               </div>
             </li>
@@ -235,16 +263,39 @@ function App() {
       >
         {<h1 className="title">INTELLIBOT</h1>}
         <ul className="feed">
-          {currentChat.map((chatMessage, index) => (
-            <li key={index}>
-              <p className="role">{chatMessage.role}</p>
-              <pre>
-                <span>{chatMessage.content}</span>
-              </pre>
-            </li>
-          ))}
-          <div ref={chatFeedRef} /> {/* Empty div for scrolling */}
-        </ul>
+  {currentChat.map((chatMessage, index) => (
+    <li key={index}>
+      <div className="message-container">
+        <div className="role-container">
+          <p className="role">{chatMessage.role}</p>
+          {chatMessage.role === "assistant" && (
+            <button
+              className="speak-button"
+              onClick={() => {
+                if (chatMessage.isSpeaking) {
+                  stopSpeaking();
+                } else {
+                  speak(chatMessage.content);
+                }
+              }}
+            >
+              {chatMessage.isSpeaking ? (
+                <img className="speak" alt="Stop" />
+              ) : (
+                <img className="speak" alt="Speak" />
+              )}
+            </button>
+          )}
+        </div>
+        <pre>
+          <span>{chatMessage.content}</span>
+        </pre>
+      </div>
+    </li>
+  ))}
+  <div ref={chatFeedRef} />{/* Empty div for scrolling */}
+</ul>
+
         <div className="bottom-section">
           <div className={"input-container"}>
             <input

@@ -306,6 +306,14 @@ input::placeholder {
   color: #092913;
   text-transform: uppercase;
 }
+.message-container {
+  position: relative;
+}
+.role-container{
+ display: flex;
+ margin-bottom: -20px;
+ align-items: center;
+}
 .feed pre span {
   color: rgba(255, 255, 255, 0.8);
   font-size: 17px;
@@ -496,4 +504,26 @@ span {
 
 .custom-modal button:not(:last-child) {
   margin-right: 10px;
+}
+
+.speak{
+  content: url(./assets/images/sound1.png);
+  
+}
+.speak-button{
+  height: 45px;
+  width: 40px;
+  border: none;
+  box-shadow:none;
+  position: absolute;
+  top: 0;
+  right: -20px;
+  
+}
+.speak-button:hover{
+  color:transparent;
+  background: rgb(39, 190, 162);
+  animation: none;
+  transform: none;
+  box-shadow:none;
 }
