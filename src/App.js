@@ -174,6 +174,7 @@ function App() {
     if (recognition.current) {
       setIsListening(false);
       recognition.current.stop();
+      getMessages();
     }
   };
 
