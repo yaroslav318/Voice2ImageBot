@@ -4,6 +4,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Roboto:wght@300&family=Ubuntu:wght@300&display=swap");
 * {
   font-family: "Ubuntu", sans-serif;
+  color: whitesmoke;
 }
 
 body {
@@ -281,6 +282,7 @@ textarea::-webkit-scrollbar {
   box-shadow: none;
 }
 .default-container{
+  color: black;
   font-size: 35px;
   font-family: "Narnoor", sans-serif;
   text-align: center;
@@ -288,6 +290,11 @@ textarea::-webkit-scrollbar {
 }
 
 .default-container p{
+  color: white;
+  font-size: 25px;
+}
+.default-container b{
+  color: rgb(167, 28, 28);
   font-size: 25px;
 }
 
@@ -314,6 +321,7 @@ textarea::-webkit-scrollbar {
   height: fit-content;
 }
 .info-features li {
+  
   font-family: "Ubuntu", sans-serif;
   font-weight: bold;
   list-style: none;
@@ -327,6 +335,7 @@ textarea::-webkit-scrollbar {
 }
 
 .info-title {
+  color: black;
   font-family: "Narnoor", sans-serif;
   text-align: center;
 }

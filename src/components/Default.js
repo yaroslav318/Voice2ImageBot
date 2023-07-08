@@ -4,14 +4,14 @@ function DefaultPage() {
     <>
       <div className="default-container">
         <h1>Welcome to Intellibot!</h1>
-        <p>Start a conversation by clicking the "+ New Conversation" button.</p>
+        <p>Start a conversation by clicking the <b>"+ New Conversation"</b> button.</p>
       </div>
       <div class="info-container">
         <div class="info-plan">
           <div class="info-title">Capabilities</div>
           <ul class="info-features">
             <li>
-              Remembers the user's past statements made across the conversation.
+            Remembers the user's past statements made across the conversation.
 
             </li>
 
@@ -19,7 +19,7 @@ function DefaultPage() {
               Enables the user to offer subsequent corrections or amendments.
             </li>
             <li>
-              Due to extensive training, it easily spot and reject unethical requests.
+            Due to extensive training, it easily spot and reject unethical requests.
             </li>
           </ul>
         </div>
