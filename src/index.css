@@ -512,7 +512,8 @@ span {
 }
 .speak-button{
   height: 45px;
-  width: 40px;
+  width: 45px;
+  border-radius: 75px;
   border: none;
   box-shadow:none;
   position: absolute;
