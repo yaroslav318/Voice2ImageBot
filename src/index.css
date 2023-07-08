@@ -291,11 +291,13 @@ textarea::-webkit-scrollbar {
 
 .default-container p{
   color: white;
-  font-size: 25px;
+  font-size: 18px;
 }
 .default-container b{
-  color: rgb(167, 28, 28);
-  font-size: 25px;
+  font-family: "Open Sans", sans-serif;
+  color: rgb(31, 174, 62);
+  font-size: 20px;
+  font-weight: bolder;
 }
 
 .info-container {
@@ -384,7 +386,12 @@ textarea::-webkit-scrollbar {
   line-height: 1.3;
 }
 .feed p.role {
-  min-width: 100px;
+  background: #77ebde54;
+  width: 10%;
+  border-radius: 10px;
+  text-align: center;
+  padding-top: 8px;
+  height: 30px;
   font-size: 18px;
   font-weight: bold;
   color: #092913;
@@ -393,6 +400,9 @@ textarea::-webkit-scrollbar {
 .message-container {
   position: relative;
 }
+.message-container pre span{
+  font-size :14px;
+  }
 .role-container {
   display: flex;
   margin-bottom: -20px;
@@ -647,4 +657,12 @@ input::placeholder {
   animation: none;
   transform: none;
   box-shadow: none;
+}
+.generated-image{
+  height: 40%;
+  width: 40%;
+  margin-left: 30%;
+  margin-bottom: 2%;
+  border: 6px solid rgb(242 237 237 / 50%);
+  border-radius: 20%;
 }

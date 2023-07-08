@@ -4,7 +4,9 @@ function DefaultPage() {
     <>
       <div className="default-container">
         <h1>Welcome to Intellibot!</h1>
+        
         <p>Start a conversation by clicking the <b>"+ New Conversation"</b> button.</p>
+        <p>To Generate image use "create image:" <br/>Ex:  Prompt(<b>create image: a red car with gold doors in 4k quality</b>)</p>
       </div>
       <div class="info-container">
         <div class="info-plan">

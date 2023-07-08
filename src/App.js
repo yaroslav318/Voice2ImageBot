@@ -60,9 +60,9 @@ function App() {
 
   const getMessages = async () => {
     if (!value) return; // Return if the input is empty
-
+  
     setIsLoading(true);
-
+  
     const options = {
       method: "POST",
       body: JSON.stringify({
@@ -72,25 +72,59 @@ function App() {
         "Content-Type": "application/json",
       },
     };
-
+  
     try {
       const response = await fetch(
         "http://localhost:8000/completions",
         options
       );
       const data = await response.json();
-      console.log(data);
-      setMessage(data.choices[0].message);
+  
+      if (data.image) {
+        // Check if the response contains an image
+        setPreviousChats((prevChats) => [
+          ...prevChats,
+          {
+            title: currentTitle,
+            role: "user",
+            content: value,
+          },
+          {
+            title: currentTitle,
+            role: "assistant",
+            content: "", // Empty content for the image message
+            image: data.image, // Add the `image` property to the chat message
+          },
+        ]);
+      } else {
+        setPreviousChats((prevChats) => [
+          ...prevChats,
+          {
+            title: currentTitle,
+            role: "user",
+            content: value,
+          },
+          {
+            title: currentTitle,
+            role: "assistant",
+            content: data.completion, 
+          },
+        ]);
+      }
+      setValue(""); 
       if (isSpeaking) {
         stopSpeaking();
       }
-      // Read aloud the response content
+  
+      console.log("Assistant Response:", data.completion);
+      console.log("Generated Image URL:", data.image);
     } catch (error) {
       console.error(error);
     } finally {
       setIsLoading(false);
     }
   };
+  
 
   const speak = (content) => {
     const speechSynthesis = window.speechSynthesis;
@@ -133,6 +167,7 @@ function App() {
           title: currentTitle,
           role: message.role,
           content: message.content,
+          image: message.image, // Add the `image` property to the chat message
         },
       ]);
     }
@@ -241,7 +276,7 @@ function App() {
       getMessages();
     }
   };
-
+  
   return (
     <div className="app">
       <section className="side-bar">
@@ -277,39 +312,44 @@ function App() {
           <DefaultPage />
         ) : (
           <ul className="feed">
-            {currentChat.map((chatMessage, index) => (
-              <li key={index}>
-                <div className="message-container">
-                  <div className="role-container">
-                    <p className="role">{chatMessage.role}</p>
-                    {chatMessage.role === "assistant" && (
-                      <button
-                        className="speak-button"
-                        onClick={() => {
-                          if (chatMessage.isSpeaking) {
-                            stopSpeaking();
-                          } else {
-                            speak(chatMessage.content);
-                          }
-                        }}
-                      >
-                        {chatMessage.isSpeaking ? (
-                          <img className="speak" alt="Stop" />
-                        ) : (
-                          <img className="speak" alt="Speak" />
-                        )}
-                      </button>
-                    )}
-                  </div>
-                  <pre>
-                    <span>{chatMessage.content}</span>
-                  </pre>
-                </div>
-              </li>
-            ))}
-            <div ref={chatFeedRef} />
-            {/* Empty div for scrolling */}
-          </ul>
+  {currentChat.map((chatMessage, index) => (
+    <li key={index}>
+      <div className="message-container">
+        <div className="role-container">
+          <p className="role">{chatMessage.role}</p>
+          {chatMessage.role === "assistant" && chatMessage.content && (
+            <button
+              className="speak-button"
+              onClick={() => {
+                if (chatMessage.isSpeaking) {
+                  stopSpeaking();
+                } else {
+                  const content=chatMessage.role === 'user' ? chatMessage.content.content : chatMessage.content.content;
+                  speak(content);
+                }
+              }}
+            >
+              {chatMessage.isSpeaking ? (
+                <img className="speak" alt="Stop" />
+              ) : (
+                <img className="speak" alt="Speak" />
+              )}
+            </button>
+          )}
+        </div>
+        {chatMessage.image ? (
+          <img className="generated-image" src={chatMessage.image} alt="Generated" />
+        ) : (
+          <pre>
+            <span>{chatMessage.role === 'user' ? chatMessage.content : chatMessage.content.content}</span>
+          </pre>
+        )}
+      </div>
+    </li>
+  ))}
+  <div ref={chatFeedRef} />
+  {/* Empty div for scrolling */}
+</ul>
         )}
         <div className="bottom-section">
           <div className={"input-container"}>
@@ -319,6 +359,7 @@ function App() {
               onChange={(e) => setValue(e.target.value)}
               onKeyPress={handlekeyPress}
               placeholder="Type your message..."
+              disabled={isLoading}
             />
             {isListening ? (
               <button className="voice_lisenting" onClick={stopListening}>
