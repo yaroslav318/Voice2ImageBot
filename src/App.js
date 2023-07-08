@@ -391,7 +391,7 @@ function App() {
         <h2>Alert</h2>
         <p className="alert">
           The chat name is too big. Please try a shorter one.The limit is upto
-          13 characters.
+          15 characters.
         </p>
         <button onClick={handleAlertClose}>OK</button>
       </Modal>

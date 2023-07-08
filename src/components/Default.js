@@ -11,16 +11,15 @@ function DefaultPage() {
           <div class="info-title">Capabilities</div>
           <ul class="info-features">
             <li>
-              Recalls the previous statements made by the user during the
-              conversation.
+              Remembers the user's past statements made across the conversation.
+
             </li>
 
             <li>
               Enables the user to offer subsequent corrections or amendments.
             </li>
             <li>
-              Proficient in discerning and rejecting inappropriate requests
-              based on extensive training.
+              Due to extensive training, it easily spot and reject unethical requests.
             </li>
           </ul>
         </div>

@@ -280,18 +280,30 @@ textarea::-webkit-scrollbar {
   background-color: #ffffff;
   box-shadow: none;
 }
-
-body {
-  font-family: "Sono", sans-serif;
+.default-container{
+  font-size: 35px;
+  font-family: "Narnoor", sans-serif;
+  text-align: center;
+  margin-top: -150px;
 }
+
+.default-container p{
+  font-size: 25px;
+}
+
 .info-container {
+  margin-top: -100px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  height: 100vh;
+  height: 36vh;
   gap: 2rem;
   width: 78%;
+  overflow:  auto;
   font-size: large;
+}
+.info-container::-webkit-scrollbar {
+  display: none;
 }
 .info-plan {
   padding: 20px;
@@ -299,11 +311,15 @@ body {
   background-color: rgba(255, 255, 255, 0.2);
   flex: 1;
   border-radius: 5%;
-  height: 230px;
+  height: fit-content;
 }
 .info-features li {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: bold;
   list-style: none;
+  margin-left: 10px;
 }
+
 
 .info-features li {
   list-style: "\02727";
@@ -311,6 +327,7 @@ body {
 }
 
 .info-title {
+  font-family: "Narnoor", sans-serif;
   text-align: center;
 }
 .info-plan > * {
@@ -319,6 +336,7 @@ body {
 .info-title {
   font-size: 24px;
   font-weight: bold;
+  margin-top: -10px;
   margin-bottom: 10px;
 }
 
@@ -330,6 +348,7 @@ body {
 .plan-features li {
   margin-bottom: 20px;
 }
+
 
 .feed {
   position: relative;
