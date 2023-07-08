@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import Modal from "react-modal";
 import "./App.css"; // Import the CSS file for styling
+import DefaultPage from "./components/Default";
 
 Modal.setAppElement("#root");
 
@@ -16,9 +17,11 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSpeaking] = useState(false);
   const chatFeedRef = useRef(null);
-  
+  const [isDefaultPage, setIsDefaultPage] = useState(true); // Track if the default page should be shown
 
   const createNewChat = () => {
+    setIsDefaultPage(true); // Hide the default page
+
     const chatNumber = previousChats.length;
     const uniqueTitle = `Chat ${chatNumber}`;
     setMessage(null);
@@ -115,8 +118,6 @@ function App() {
     );
   };
 
-
-
   useEffect(() => {
     if (message) {
       setPreviousChats((prevChats) => [
@@ -132,7 +133,6 @@ function App() {
           content: message.content,
         },
       ]);
-
     }
   }, [message]);
 
@@ -202,6 +202,7 @@ function App() {
     if (recognition.current) {
       setIsListening(false);
       recognition.current.stop();
+      setIsDefaultPage(false);
       getMessages();
     }
   };
@@ -228,6 +229,7 @@ function App() {
 
   const handlekeyPress = (e) => {
     if (e.key === "Enter") {
+      setIsDefaultPage(false);
       getMessages();
     }
   };
@@ -258,44 +260,49 @@ function App() {
           ))}
         </ul>
       </section>
+
       <section
         className={`main ${isPromptOpen || isDeletePromptOpen ? "blur" : ""}`}
       >
-        {<h1 className="title">INTELLIBOT</h1>}
-        <ul className="feed">
-  {currentChat.map((chatMessage, index) => (
-    <li key={index}>
-      <div className="message-container">
-        <div className="role-container">
-          <p className="role">{chatMessage.role}</p>
-          {chatMessage.role === "assistant" && (
-            <button
-              className="speak-button"
-              onClick={() => {
-                if (chatMessage.isSpeaking) {
-                  stopSpeaking();
-                } else {
-                  speak(chatMessage.content);
-                }
-              }}
-            >
-              {chatMessage.isSpeaking ? (
-                <img className="speak" alt="Stop" />
-              ) : (
-                <img className="speak" alt="Speak" />
-              )}
-            </button>
-          )}
-        </div>
-        <pre>
-          <span>{chatMessage.content}</span>
-        </pre>
-      </div>
-    </li>
-  ))}
-  <div ref={chatFeedRef} />{/* Empty div for scrolling */}
-</ul>
-
+        <h1 className="title">INTELLIBOT</h1>
+        {isDefaultPage ? (
+          <DefaultPage />
+        ) : (
+          <ul className="feed">
+            {currentChat.map((chatMessage, index) => (
+              <li key={index}>
+                <div className="message-container">
+                  <div className="role-container">
+                    <p className="role">{chatMessage.role}</p>
+                    {chatMessage.role === "assistant" && (
+                      <button
+                        className="speak-button"
+                        onClick={() => {
+                          if (chatMessage.isSpeaking) {
+                            stopSpeaking();
+                          } else {
+                            speak(chatMessage.content);
+                          }
+                        }}
+                      >
+                        {chatMessage.isSpeaking ? (
+                          <img className="speak" alt="Stop" />
+                        ) : (
+                          <img className="speak" alt="Speak" />
+                        )}
+                      </button>
+                    )}
+                  </div>
+                  <pre>
+                    <span>{chatMessage.content}</span>
+                  </pre>
+                </div>
+              </li>
+            ))}
+            <div ref={chatFeedRef} />
+            {/* Empty div for scrolling */}
+          </ul>
+        )}
         <div className="bottom-section">
           <div className={"input-container"}>
             <input
@@ -335,6 +342,7 @@ function App() {
           <p className={"info"}>Made by Rahmath, Hussain, Owais</p>
         </div>
       </section>
+
       <Modal
         isOpen={isPromptOpen}
         onRequestClose={handlePromptClose}
