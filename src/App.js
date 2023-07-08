@@ -228,8 +228,14 @@ function App() {
   };
 
   const handlekeyPress = (e) => {
+
     if (e.key === "Enter") {
       setIsDefaultPage(false);
+    if (e.key === "Enter" && e.shiftKey) {
+      e.preventDefault();
+      setValue((prevValue) => prevValue + "\n");
+    } else if (e.key === "Enter") {
+      e.preventDefault();
       getMessages();
     }
   };
@@ -305,7 +311,7 @@ function App() {
         )}
         <div className="bottom-section">
           <div className={"input-container"}>
-            <input
+            <textarea
               id="input"
               value={value}
               onChange={(e) => setValue(e.target.value)}

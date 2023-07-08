@@ -129,11 +129,14 @@ nav {
   display: flex;
   align-items: center;
 }
-input {
+textarea {
   font-family: "Ysabeau+SC", sans-serif;
   position: absolute;
   bottom: 0%;
   left: 0;
+  height: 24px;
+  overflow-y: auto;
+  resize: vertical;
   width: calc(100% - 60px);
   font-size: 20px;
   background-color: rgba(225, 225, 225, 0.05);
@@ -147,23 +150,26 @@ input {
   animation: pulse 1.5s infinite;
   z-index: 1;
 }
-input {
+textarea {
   transition: opacity 1s ease-in-out;
 }
-input:hover {
+textarea:hover {
   cursor: text;
   color: #e6e8ec;
   background-color: #194935;
   box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);
 }
 
-input:focus,
-input:not(:placeholder-shown) {
+textarea:focus,
+textarea:not(:placeholder-shown) {
   opacity: 1;
 }
 
-input::placeholder {
+textarea::placeholder {
   color: white;
+}
+textarea::-webkit-scrollbar {
+  display: none;
 }
 
 .history {
@@ -445,6 +451,46 @@ span {
   background-repeat: no-repeat;
 
   margin-right: 15px;
+}
+
+
+input {
+  font-family: "Ysabeau+SC", sans-serif;
+  position: absolute;
+  bottom: 0%;
+  left: 0;
+  overflow-x: none !important;
+  overflow-y: auto;
+  width: calc(100% - 60px);
+  font-size: 20px;
+  background-color: rgba(225, 225, 225, 0.05);
+  padding: 12px 15px;
+  border-color: #29a06c;
+  border-radius: 5px;
+  border-width: 3px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0 54px 55px, rgba(0, 0, 0, 0.05) 0 -12px 30px,
+    rgba(0, 0, 0, 0.05) 0 4px 6px, rgba(0, 0, 0, 0.05) 0 12px 3px,
+    rgba(0, 0, 0, 0.05) 0 -3px 5px;
+  animation: pulse 1.5s infinite;
+  z-index: 1;
+}
+input {
+  transition: opacity 1s ease-in-out;
+}
+input:hover {
+  cursor: text;
+  color: #e6e8ec;
+  background-color: #194935;
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);
+}
+
+input:focus,
+input:not(:placeholder-shown) {
+  opacity: 1;
+}
+
+input::placeholder {
+  color: white;
 }
 
 .chat-title-container {
