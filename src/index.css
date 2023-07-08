@@ -281,6 +281,56 @@ textarea::-webkit-scrollbar {
   box-shadow: none;
 }
 
+body {
+  font-family: "Sono", sans-serif;
+}
+.info-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100vh;
+  gap: 2rem;
+  width: 78%;
+  font-size: large;
+}
+.info-plan {
+  padding: 20px;
+  text-align: left;
+  background-color: rgba(255, 255, 255, 0.2);
+  flex: 1;
+  border-radius: 5%;
+  height: 230px;
+}
+.info-features li {
+  list-style: none;
+}
+
+.info-features li {
+  list-style: "\02727";
+  padding-left: 10px;
+}
+
+.info-title {
+  text-align: center;
+}
+.info-plan > * {
+  width: 100%;
+}
+.info-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.info-features {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.plan-features li {
+  margin-bottom: 20px;
+}
+
 .feed {
   position: relative;
   overflow: auto;
@@ -315,10 +365,10 @@ textarea::-webkit-scrollbar {
 .message-container {
   position: relative;
 }
-.role-container{
- display: flex;
- margin-bottom: -20px;
- align-items: center;
+.role-container {
+  display: flex;
+  margin-bottom: -20px;
+  align-items: center;
 }
 .feed pre span {
   color: rgba(255, 255, 255, 0.8);
@@ -450,7 +500,6 @@ input::placeholder {
   margin: -30px;
   justify-content: space-between;
   width: 115%;
-  
 }
 .delete {
   box-shadow: none;
@@ -552,25 +601,23 @@ input::placeholder {
   margin-right: 10px;
 }
 
-.speak{
+.speak {
   content: url(./assets/images/sound.png);
-  
 }
-.speak-button{
+.speak-button {
   height: 45px;
   width: 45px;
   border-radius: 75px;
   border: none;
-  box-shadow:none;
+  box-shadow: none;
   position: absolute;
   top: 0;
   right: -20px;
-  
 }
-.speak-button:hover{
-  color:transparent;
+.speak-button:hover {
+  color: transparent;
   background: rgb(39, 190, 162);
   animation: none;
   transform: none;
-  box-shadow:none;
+  box-shadow: none;
 }
