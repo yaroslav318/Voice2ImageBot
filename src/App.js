@@ -32,6 +32,7 @@ function App() {
   const handleClick = (uniqueTitle) => {
     setCurrentTitle(uniqueTitle);
     setMessage(null);
+    setIsDefaultPage(false);
   };
 
   const handleRename = (uniqueTitle) => {
@@ -53,6 +54,7 @@ function App() {
         )
       );
       setIsPromptOpen(false);
+      setCurrentTitle(modalValue);
     }
   };
 
@@ -154,6 +156,7 @@ function App() {
         handlePromptSubmit(); // Programmatically click the "Rename" button
       } else {
         getMessages();
+        setIsDefaultPage(true);
       }
     }
   };
@@ -221,6 +224,7 @@ function App() {
       prevChats.filter((chat) => chat.title !== currentTitle)
     );
     setIsDeletePromptOpen(false);
+    setIsDefaultPage(true);
   };
 
   const handleAlertClose = () => {
@@ -228,13 +232,11 @@ function App() {
   };
 
   const handlekeyPress = (e) => {
-
-    if (e.key === "Enter") {
-      setIsDefaultPage(false);
     if (e.key === "Enter" && e.shiftKey) {
       e.preventDefault();
       setValue((prevValue) => prevValue + "\n");
     } else if (e.key === "Enter") {
+      setIsDefaultPage(false);
       e.preventDefault();
       getMessages();
     }
