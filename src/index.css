@@ -6,7 +6,9 @@
   font-family: "Ubuntu", sans-serif;
   color: whitesmoke;
 }
-
+h1 {
+  cursor: default;
+}
 body {
   margin: 0;
   padding: 0;
@@ -281,7 +283,7 @@ textarea::-webkit-scrollbar {
   background-color: #ffffff;
   box-shadow: none;
 }
-.default-container{
+.default-container {
   color: black;
   font-size: 35px;
   font-family: "Narnoor", sans-serif;
@@ -289,11 +291,11 @@ textarea::-webkit-scrollbar {
   margin-top: -150px;
 }
 
-.default-container p{
+.default-container p {
   color: white;
   font-size: 25px;
 }
-.default-container b{
+.default-container b {
   color: rgb(167, 28, 28);
   font-size: 25px;
 }
@@ -303,10 +305,10 @@ textarea::-webkit-scrollbar {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  
+
   gap: 2rem;
   width: 78%;
-  overflow:  auto;
+  overflow: auto;
   font-size: large;
 }
 .info-container::-webkit-scrollbar {
@@ -321,13 +323,12 @@ textarea::-webkit-scrollbar {
   height: fit-content;
 }
 .info-features li {
-  color:rgba(225, 225, 225, 0.671);
+  color: rgba(225, 225, 225, 0.671);
   font-family: "Ubuntu", sans-serif;
   font-weight: bold;
   list-style: none;
   margin-left: 10px;
 }
-
 
 .info-features li {
   list-style: "\02727";
@@ -357,7 +358,6 @@ textarea::-webkit-scrollbar {
 .plan-features li {
   margin-bottom: 20px;
 }
-
 
 .feed {
   position: relative;
