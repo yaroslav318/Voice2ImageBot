@@ -16,17 +16,17 @@ function DefaultPage() {
             </li>
 
             <li>
-              Enables the user to offer subsequent corrections or amendments.
+              Ability to speak the response.
             </li>
             <li>
-            Due to extensive training, it easily spot and reject unethical requests.
+            Due to extensive training, it easily spot and reject unethical requests.
             </li>
           </ul>
         </div>
         <div class="info-plan">
           <div class="info-title">Examples</div>
           <ul class="info-features">
-            <li> “What is Java?” ↵&#8195;&#8195;&#8195;&#8195; &#8195;&#8195;</li>
+            <li> “What is Java?” ↵&#8195;&#8195;&#8195;&#8195; &#8195;&#8195;&#8195;&#8195; &#8195;&#8195;</li>
             <li>
               {" "}
               “Give me some inspiration for a serene painting"
@@ -34,17 +34,17 @@ function DefaultPage() {
             </li>
             <li>
               {" "}
-              "provide a simple explanation of how Fetch API works"
-              ↵ &#8195;&#8195;&#8195;
+              "Provide a simple explanation of how fetch API works"
+              ↵ 
             </li>
           </ul>
         </div>
         <div class="info-plan">
           <div class="info-title">Constraints</div>
           <ul class="info-features">
-            <li> Sometimes inaccurate information may be generated</li>
-            <li> Occasionally, harmful or biased content may be generated</li>
-            <li> response character limit : 100 characters</li>
+            <li> Sometimes inaccurate information may be generated &#8195;&#8195;&#8195; &#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;</li>
+            <li> Occasionally, harmful or biased content may be generated &#8195;&#8195;&#8195;&#8195;</li>
+            <li> Response chat limit : 100 words</li>
           </ul>
         </div>
       </div>
