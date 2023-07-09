@@ -18,7 +18,7 @@ app.post("/completions", async (req, res) => {
   if (message.toLowerCase().includes("create image:")) {
     try {
       // Extract the remaining sentence after the command "create image"
-      const remainingSentence = message.toLowerCase().excludes(":");
+      const remainingSentence = message.toLowerCase().toExclude(":");
 
       // Call the DALL-E image generation API
       const imageUrl = await generateImage(remainingSentence);
