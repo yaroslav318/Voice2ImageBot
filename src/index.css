@@ -42,7 +42,7 @@
 * {
   font-family: "Ubuntu", sans-serif;
   color: whitesmoke;
-  --blur-color: rgba(255, 255, 255, 0.6);
+  --blur-color: rgba(225, 225, 225, 0.5);
 }
 h1 {
   cursor: default;
@@ -773,7 +773,7 @@ input::placeholder {
   top: 0;
   right: 0;
   z-index: -2;
-  background-color: hsl(4, 98%, 60%);
+  background-color: var(--blur-color);
   transition: all 0.3s ease;
 }
 
@@ -827,4 +827,17 @@ input::placeholder {
 
 .circular-menu.active .menu-item:nth-child(4) {
   transform: translate3d(-7em, 1em, 0);
+}
+
+.items-wrapper .dark {
+  background-color: #343a40;
+}
+.items-wrapper .light {
+  background-color: #b1b1b1;
+}
+.items-wrapper .blue {
+  background-color: #007bff;
+}
+.items-wrapper .default {
+  background-color: linear-gradient(0deg, #d9afd9 7%, #97d9e1 93%);
 }
