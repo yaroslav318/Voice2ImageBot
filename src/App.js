@@ -115,8 +115,8 @@ function App() {
       if (isSpeaking) {
         stopSpeaking();
       }
-  
       console.log("Assistant Response:", data.completion);
+      console.log("Assistant Response:", data.message);
       console.log("Generated Image URL:", data.image);
     } catch (error) {
       console.error(error);
@@ -315,34 +315,38 @@ function App() {
   {currentChat.map((chatMessage, index) => (
     <li key={index}>
       <div className="message-container">
-        <div className="role-container">
-          <p className="role">{chatMessage.role}</p>
-          {chatMessage.role === "assistant" && chatMessage.content && (
-            <button
-              className="speak-button"
-              onClick={() => {
-                if (chatMessage.isSpeaking) {
-                  stopSpeaking();
-                } else {
-                  const content=chatMessage.role === 'user' ? chatMessage.content.content : chatMessage.content.content;
-                  speak(content);
-                }
-              }}
-            >
-              {chatMessage.isSpeaking ? (
-                <img className="speak" alt="Stop" />
-              ) : (
-                <img className="speak" alt="Speak" />
-              )}
-            </button>
-          )}
-        </div>
-        {chatMessage.image ? (
+        {chatMessage && ( // Add null check for chatMessage
+          <div className="role-container">
+            <p className="role">{chatMessage.role}</p>
+            {chatMessage.role === "assistant" && chatMessage.content && (
+              <button
+                className="speak-button"
+                onClick={() => {
+                  if (chatMessage.isSpeaking) {
+                    stopSpeaking();
+                  } else {
+                    const content = chatMessage.role === 'user' ? chatMessage.content.content : chatMessage.content.content;
+                    speak(content);
+                  }
+                }}
+              >
+                {chatMessage.isSpeaking ? (
+                  <img className="speak" alt="Stop" />
+                ) : (
+                  <img className="speak" alt="Speak" />
+                )}
+              </button>
+            )}
+          </div>
+        )}
+        {chatMessage && chatMessage.image ? ( // Add null check for chatMessage
           <img className="generated-image" src={chatMessage.image} alt="Generated" />
         ) : (
-          <pre>
-            <span>{chatMessage.role === 'user' ? chatMessage.content : chatMessage.content.content}</span>
-          </pre>
+          chatMessage && chatMessage.content && ( // Add null check for chatMessage and content
+            <pre>
+              <span>{chatMessage.role === 'user' ? chatMessage.content : chatMessage.content.content}</span>
+            </pre>
+          )
         )}
       </div>
     </li>
@@ -350,6 +354,7 @@ function App() {
   <div ref={chatFeedRef} />
   {/* Empty div for scrolling */}
 </ul>
+
         )}
         <div className="bottom-section">
           <div className={"input-container"}>
