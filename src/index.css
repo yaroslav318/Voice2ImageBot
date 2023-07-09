@@ -390,7 +390,7 @@ textarea::-webkit-scrollbar {
   width: 90%;
   padding: 1px 20px 1px 20px;
   margin: 10px 0;
-  border-radius: 12px;
+  border-radius: 20px;
 }
 .feed p {
   color: rgba(255, 255, 255, 0.8);
