@@ -303,7 +303,7 @@ textarea::-webkit-scrollbar {
   font-weight: bolder;
 }
 .default-container b {
-  color: rgb(167, 28, 28);
+  color: rgba(237, 230, 230, 0.516);
   font-size: 25px;
 
 }
@@ -340,7 +340,9 @@ textarea::-webkit-scrollbar {
   list-style: none;
   margin-left: 10px;
 }
-
+.info-features li b {
+  color:rgba(12, 18, 18, 0.674);
+}
 .info-features li {
   list-style: "\02727";
   padding-left: 10px;

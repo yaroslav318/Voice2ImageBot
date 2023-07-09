@@ -28,19 +28,17 @@ function DefaultPage() {
         <div className="info-plan">
           <div className="info-title">Examples</div>
           <ul className="info-features">
-            <li> “What is Java?” ↵</li>
+            <li> “What is Java?” <b>↵</b></li>
             <li>
               {" "}
-              “Give me some inspiration for a serene painting"
-              ↵ 
+              “Give me some inspiration for a serene painting"<b>↵</b>
             </li>
             <li>
               {" "}
-              "Provide a simple explanation of how fetch API works"
-              ↵ 
+              "Provide a simple explanation of how fetch API works"<b>↵</b> 
             </li>
             <li>
-            "create image: a red car with gold doors in 4k quality"↵ 
+            "create image: a red car with gold doors in 4k quality"<b>↵</b> 
             </li>
           </ul>
         </div>
