@@ -1,8 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import Modal from "react-modal";
-import "./App.css"; // Import the CSS file for styling
 import DefaultPage from "./components/Default";
-
+import "./index.css";
 Modal.setAppElement("#root");
 
 function App() {
@@ -18,6 +17,21 @@ function App() {
   const [isSpeaking] = useState(false);
   const chatFeedRef = useRef(null);
   const [isDefaultPage, setIsDefaultPage] = useState(true); // Track if the default page should be shown
+  const [theme, setTheme] = useState("default");
+  const [isThemeMenuOpen, setIsThemeMenuOpen] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+
+  const toggleMenu = () => {
+    setIsActive(!isActive);
+  };
+  const handleThemeChange = (selectedTheme) => {
+    setTheme(selectedTheme);
+    setIsThemeMenuOpen(false);
+  };
+
+  const handleThemeMenuToggle = () => {
+    setIsThemeMenuOpen((prevState) => !prevState);
+  };
 
   const createNewChat = () => {
     setIsDefaultPage(true); // Hide the default page
@@ -60,9 +74,9 @@ function App() {
 
   const getMessages = async () => {
     if (!value) return; // Return if the input is empty
-  
+
     setIsLoading(true);
-  
+
     const options = {
       method: "POST",
       body: JSON.stringify({
@@ -72,14 +86,14 @@ function App() {
         "Content-Type": "application/json",
       },
     };
-  
+
     try {
       const response = await fetch(
         "http://localhost:8000/completions",
         options
       );
       const data = await response.json();
-  
+
       if (data.image) {
         // Check if the response contains an image
         setPreviousChats((prevChats) => [
@@ -107,16 +121,15 @@ function App() {
           {
             title: currentTitle,
             role: "assistant",
-            content: data.completion, 
+            content: data.completion,
           },
         ]);
       }
-      setValue(""); 
+      setValue("");
       if (isSpeaking) {
         stopSpeaking();
       }
       console.log("Assistant Response:", data.completion);
-      console.log("Assistant Response:", data.message);
       console.log("Generated Image URL:", data.image);
     } catch (error) {
       console.error(error);
@@ -124,7 +137,6 @@ function App() {
       setIsLoading(false);
     }
   };
-  
 
   const speak = (content) => {
     const speechSynthesis = window.speechSynthesis;
@@ -276,9 +288,9 @@ function App() {
       getMessages();
     }
   };
-  
+
   return (
-    <div className="app">
+    <div className={`app ${theme}`}>
       <section className="side-bar">
         <button onClick={createNewChat}>+ New Conversation</button>
         <ul className="history">
@@ -302,6 +314,41 @@ function App() {
             </li>
           ))}
         </ul>
+        <div
+          id="circularMenu"
+          className={`circular-menu ${isActive ? "active" : ""}`}
+        >
+          <a className="floating-btn" onClick={toggleMenu}>
+            <i className="fa fa-plus"></i>
+          </a>
+
+          <menu className="items-wrapper">
+            <a
+              className={`menu-item fa fa-linkedin ${
+                theme === "dark" ? "active" : ""
+              }`}
+              onClick={() => handleThemeChange("dark")}
+            ></a>
+            <a
+              className={`menu-item fa fa-linkedin ${
+                theme === "light" ? "active" : ""
+              }`}
+              onClick={() => handleThemeChange("light")}
+            ></a>
+            <a
+              className={`menu-item fa fa-linkedin ${
+                theme === "blue" ? "active" : ""
+              }`}
+              onClick={() => handleThemeChange("blue")}
+            ></a>
+            <a
+              className={`menu-item fa fa-linkedin ${
+                theme === "default" ? "active" : ""
+              }`}
+              onClick={() => handleThemeChange("default")}
+            ></a>
+          </menu>
+        </div>
       </section>
 
       <section
@@ -312,49 +359,61 @@ function App() {
           <DefaultPage />
         ) : (
           <ul className="feed">
-  {currentChat.map((chatMessage, index) => (
-    <li key={index}>
-      <div className="message-container">
-        {chatMessage && ( // Add null check for chatMessage
-          <div className="role-container">
-            <p className="role">{chatMessage.role}</p>
-            {chatMessage.role === "assistant" && chatMessage.content && (
-              <button
-                className="speak-button"
-                onClick={() => {
-                  if (chatMessage.isSpeaking) {
-                    stopSpeaking();
-                  } else {
-                    const content = chatMessage.role === 'user' ? chatMessage.content.content : chatMessage.content.content;
-                    speak(content);
-                  }
-                }}
-              >
-                {chatMessage.isSpeaking ? (
-                  <img className="speak" alt="Stop" />
-                ) : (
-                  <img className="speak" alt="Speak" />
-                )}
-              </button>
-            )}
-          </div>
-        )}
-        {chatMessage && chatMessage.image ? ( // Add null check for chatMessage
-          <img className="generated-image" src={chatMessage.image} alt="Generated" />
-        ) : (
-          chatMessage && chatMessage.content && ( // Add null check for chatMessage and content
-            <pre>
-              <span>{chatMessage.role === 'user' ? chatMessage.content : chatMessage.content.content}</span>
-            </pre>
-          )
-        )}
-      </div>
-    </li>
-  ))}
-  <div ref={chatFeedRef} />
-  {/* Empty div for scrolling */}
-</ul>
-
+            {currentChat.map((chatMessage, index) => (
+              <li key={index}>
+                <div className="message-container">
+                  {chatMessage && ( // Add null check for chatMessage
+                    <div className="role-container">
+                      <p className="role">{chatMessage.role}</p>
+                      {chatMessage.role === "assistant" &&
+                        chatMessage.content && (
+                          <button
+                            className="speak-button"
+                            onClick={() => {
+                              if (chatMessage.isSpeaking) {
+                                stopSpeaking();
+                              } else {
+                                const content =
+                                  chatMessage.role === "user"
+                                    ? chatMessage.content.content
+                                    : chatMessage.content.content;
+                                speak(content);
+                              }
+                            }}
+                          >
+                            {chatMessage.isSpeaking ? (
+                              <img className="speak" alt="Stop" />
+                            ) : (
+                              <img className="speak" alt="Speak" />
+                            )}
+                          </button>
+                        )}
+                    </div>
+                  )}
+                  {chatMessage && chatMessage.image ? ( // Add null check for chatMessage
+                    <img
+                      className="generated-image"
+                      src={chatMessage.image}
+                      alt="Generated"
+                    />
+                  ) : (
+                    chatMessage &&
+                    chatMessage.content && ( // Add null check for chatMessage and content
+                      <pre>
+                        <span>
+                          {chatMessage.role === "user"
+                            ? chatMessage.content
+                            : chatMessage.content.content}
+                        </span>
+                      </pre>
+                    )
+                  )}
+                </div>
+              </li>
+            ))}
+            <div ref={chatFeedRef} />
+            {/* Empty div for scrolling */}
+          </ul>
         )}
         <div className="bottom-section">
           <div className={"input-container"}>
