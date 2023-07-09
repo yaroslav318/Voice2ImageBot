@@ -15,7 +15,7 @@ app.post('/completions', async (req, res) => {
   const { message } = req.body;
 
   // Check if the message includes the "create image" command
-  if (message.toLowerCase().includes('create image:')) {
+  if (message.toLowerCase().includes('create image')) {
     try {
       // Extract the remaining sentence after the command "create image"
       const remainingSentence = message
