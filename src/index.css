@@ -312,8 +312,7 @@ textarea::-webkit-scrollbar {
   margin-top: -100px;
   display: flex;
   justify-content: space-evenly;
-  align-items: center;
-
+  height:36%;
   gap: 2rem;
   width: 78%;
   overflow: auto;
@@ -326,9 +325,13 @@ textarea::-webkit-scrollbar {
   padding: 20px;
   text-align: left;
   background-color: rgba(255, 255, 255, 0.2);
-  flex: 1;
-  border-radius: 5%;
-  height: fit-content;
+  flex: 1 1;
+  border-radius: 15%;
+  height: 70%;
+  overflow: auto;
+}
+.info-plan::-webkit-scrollbar {
+  display: none;
 }
 .info-features li {
   color: rgba(225, 225, 225, 0.671);
@@ -341,6 +344,9 @@ textarea::-webkit-scrollbar {
 .info-features li {
   list-style: "\02727";
   padding-left: 10px;
+}
+.info-features li::marker{
+  color:black;
 }
 
 .info-title {
