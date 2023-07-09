@@ -45,7 +45,7 @@ function App() {
   };
 
   const handlePromptSubmit = () => {
-    if (modalValue.length > 15) {
+    if (modalValue.length > 16) {
       setIsAlertOpen(true);
     } else {
       setPreviousChats((prevChats) =>
@@ -432,7 +432,7 @@ function App() {
         <h2>Alert</h2>
         <p className="alert">
           The chat name is too big. Please try a shorter one.The limit is upto
-          15 characters.
+          16 characters.
         </p>
         <button onClick={handleAlertClose}>OK</button>
       </Modal>

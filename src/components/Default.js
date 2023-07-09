@@ -14,9 +14,7 @@ function DefaultPage() {
           <ul className="info-features">
             <li>
             Remembers the user's past statements made across the conversation.
-
             </li>
-
             <li>
               Ability to speak the response.
             </li>
