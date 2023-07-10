@@ -496,12 +496,14 @@ function App() {
         className="custom-modal"
         overlayClassName="custom-modal-overlay"
       >
-        <h2>Alert</h2>
-        <p className="alert">
-          The chat name is too big. Please try a shorter one.The limit is upto
-          16 characters.
-        </p>
-        <button onClick={handleAlertClose}>OK</button>
+        <div className="alert">
+          <h2>Alert</h2>
+          <p>
+            The chat name is too big. Please try a shorter one.The limit is upto
+            16 characters.
+          </p>
+          <button onClick={handleAlertClose}>OK</button>
+        </div>
       </Modal>
     </div>
   );
