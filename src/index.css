@@ -11,7 +11,7 @@
   --quinary-color: blue;
   --text-color: rgb(69, 68, 68);
   --textarea-backgroud:#8d85ab;
-  --feed-li: linear-gradient(0deg, #70abb1,#6db6d8 0% 100%);
+  --feed-li: #6db6d8;
 }
 
 .app.dark {
@@ -22,7 +22,7 @@
   --quinary-color: blue;
   --text-color: rgb(69, 68, 68);
   --textarea-backgroud:#181e1b;
-  --feed-li: linear-gradient(0deg, #70abb1,#171f23a3 0% 100%);
+  --feed-li: #171f23a3;
 }
 
 .app.blue {
@@ -33,7 +33,7 @@
   --quinary-color: blue;
   --text-color: rgb(69, 68, 68);
   --textarea-backgroud:#5e9cbc;
-  --feed-li: linear-gradient(0deg, #70abb1,#0a0a9d8f 0% 100%);
+  --feed-li: #0a0a9d8f;
 }
 
 .app.light {
@@ -44,7 +44,7 @@
   --quinary-color: blue;
   --text-color: rgb(69, 68, 68);
   --textarea-backgroud:#a3cdca;
-  --feed-li: linear-gradient(0deg, #70abb1,#35393b6a 0% 100%);
+  --feed-li: #35393b6a;
 }
 
 * {
