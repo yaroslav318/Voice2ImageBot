@@ -108,11 +108,16 @@ body {
   display: flex;
   flex-direction: row-reverse;
 }
+@font-face {
+  font-family: 'CustomFont';
+  src: url('./assets/mexcellent3d.ttf') format('truetype');
+}
 .title {
-  font-family: "Ysabeau+SC", sans-serif;
-  font-size: 35px;
+  font-family: "CustomFont",sans-serif;
+  font-size: 65px;
   color: var(--title-color);
-  padding-bottom: 18px;
+  margin-top: 10px;
+  padding-bottom: 0px;
 }
 
 .side-bar {
