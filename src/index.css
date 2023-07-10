@@ -5,10 +5,9 @@
 
 .app.default {
   --primary-color: linear-gradient(0deg, #edbfed 0%, #83e0ea 100%);
-  --title-color: #191919;
   --sidebar-color: linear-gradient(135deg, #89cbf7 0%, #b3a1f5 100%);
   --quaternary-color: white;
-  --quinary-color: blue;
+  --quinary-color: rgb(149, 149, 248);
   --text-color: rgb(27, 21, 21);
   --textarea-backgroud: #8d85ab;
   --feed-li: linear-gradient(135deg, #89cbf7 0%, #c6b8f9 100%);
@@ -21,11 +20,16 @@
   --textborder-color: rgb(238, 228, 228);
   --info-containers: rgba(255, 255, 255, 0.2);
   --default-container: white;
+  --title-color1:rgb(123, 199, 250);
+  --title-color2:rgb(238, 154, 225);
+  --title-color: #3561e6;
 }
 
 .app.dark {
   --primary-color: #464647;
-  --title-color: #141313f7;
+  --title-color1:rgb(3, 3, 3);
+  --title-color2:rgb(51, 49, 51);
+  --title-color: #0000006c;
   --sidebar-color: #161414;
   --border-color: rgb(196, 192, 192);
   --quinary-color: rgb(224, 224, 232);
@@ -45,7 +49,9 @@
 
 .app.blue {
   --primary-color: #007bff;
-  --title-color: #f8f1f1;
+  --title-color1:rgb(31, 11, 211);
+  --title-color2:rgb(138, 113, 252);
+  --title-color: #442aa3;
   --sidebar-color: rgb(103, 211, 247);
   --quaternary-color: rgba(255, 255, 255, 0.968);
   --quinary-color: blue;
@@ -53,11 +59,7 @@
   --textarea-backgroud: rgb(103, 211, 247);
   --feed-li: rgb(103, 211, 247);
   --newchat: linear-gradient(to right, #3175fcd7 0%, rgb(103, 211, 247) 100%);
-  --newchat-hover: linear-gradient(
-    to left,
-    #3175fcd7 0%,
-    rgb(103, 211, 247) 100%
-  );
+  --newchat-hover: linear-gradient(to left, #3175fcd7 0%, rgb(103, 211, 247) 100%);
   --textsmoke-color: rgb(227, 226, 226);
   --historylihover-color: #467ff0d7;
   --historyli-color: rgb(25, 179, 231);
@@ -71,7 +73,9 @@
 
 .app.light {
   --primary-color: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-  --title-color: #191919;
+  --title-color1:rgb(203, 203, 205);
+  --title-color2:rgb(151, 151, 151);
+  --title-color: #c6c7c9;
   --sidebar-color: #d2d3db;
   --quaternary-color: white;
   --quinary-color: blue;
@@ -112,13 +116,32 @@ body {
   font-family: 'CustomFont';
   src: url('./assets/mexcellent3d.ttf') format('truetype');
 }
+
 .title {
-  font-family: "CustomFont",sans-serif;
-  font-size: 65px;
-  color: var(--title-color);
+  font-family: "CustomFont", sans-serif;
+  font-size: 55px;
   margin-top: 10px;
   padding-bottom: 0px;
+  background: linear-gradient(to right, var(--title-color1), var(--title-color2),var(--title-color), var(--title-color1),var(--title-color2),var(--title-color));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: wave-animation 6s infinite linear;
+  background-size: 200% auto;
 }
+
+@keyframes wave-animation {
+  0% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
 
 .side-bar {
   background: var(--sidebar-color);
