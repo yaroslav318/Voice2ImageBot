@@ -5,7 +5,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import Modal from "react-modal";
 import DefaultPage from "./components/Default";
-import "./index.css";
 Modal.setAppElement("#root");
 
 function App() {
@@ -328,25 +327,25 @@ function App() {
 
           <menu className="items-wrapper">
             <a
-              className={`menu-item fa fa-linkedin ${
+              className={`dark menu-item fa fa-linkedin ${
                 theme === "dark" ? "active" : ""
               }`}
               onClick={() => handleThemeChange("dark")}
             ></a>
             <a
-              className={`menu-item fa fa-linkedin ${
+              className={`light menu-item fa fa-linkedin ${
                 theme === "light" ? "active" : ""
               }`}
               onClick={() => handleThemeChange("light")}
             ></a>
             <a
-              className={`menu-item fa fa-linkedin ${
+              className={`blue menu-item fa fa-linkedin ${
                 theme === "blue" ? "active" : ""
               }`}
               onClick={() => handleThemeChange("blue")}
             ></a>
             <a
-              className={`menu-item fa fa-linkedin ${
+              className={`default menu-item fa fa-linkedin ${
                 theme === "default" ? "active" : ""
               }`}
               onClick={() => handleThemeChange("default")}
