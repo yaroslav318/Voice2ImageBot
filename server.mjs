@@ -89,7 +89,7 @@ async function getChatCompletion(message) {
     options
   );
   const data = await response.json();
-
+  console.log("Response data:", data);
   if (data.choices && data.choices.length > 0) {
     return data.choices[0].message;
   } else {
