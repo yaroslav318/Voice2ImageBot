@@ -22,14 +22,14 @@
   --default-container: white;
   --title-color1:rgb(123, 199, 250);
   --title-color2:rgb(238, 154, 225);
-  --title-color: #3561e6;
+  --title-color: rgb(123, 199, 250);
 }
 
 .app.dark {
   --primary-color: #464647;
-  --title-color1:rgb(3, 3, 3);
-  --title-color2:rgb(51, 49, 51);
-  --title-color: #0000006c;
+  --title-color1:rgb(51, 49, 51);
+  --title-color2:rgb(3, 3, 3);
+  --title-color: rgb(51, 49, 51);
   --sidebar-color: #161414;
   --border-color: rgb(196, 192, 192);
   --quinary-color: rgb(224, 224, 232);
@@ -49,9 +49,9 @@
 
 .app.blue {
   --primary-color: #007bff;
-  --title-color1:rgb(31, 11, 211);
-  --title-color2:rgb(138, 113, 252);
-  --title-color: #442aa3;
+  --title-color1:rgb(113, 182, 252);
+  --title-color2:rgb(31, 11, 211);
+  --title-color: rgb(113, 182, 252);
   --sidebar-color: rgb(103, 211, 247);
   --quaternary-color: rgba(255, 255, 255, 0.968);
   --quinary-color: blue;
@@ -75,7 +75,7 @@
   --primary-color: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
   --title-color1:rgb(203, 203, 205);
   --title-color2:rgb(151, 151, 151);
-  --title-color: #c6c7c9;
+  --title-color: rgb(203, 203, 205);
   --sidebar-color: #d2d3db;
   --quaternary-color: white;
   --quinary-color: blue;
