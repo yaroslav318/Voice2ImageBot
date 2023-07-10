@@ -81,7 +81,6 @@ async function getChatCompletion(message) {
       model: "gpt-3.5-turbo",
       messages: [{ role: "user", content: message }],
       max_tokens: 50,
-      stream: true,
     }),
   };
 
