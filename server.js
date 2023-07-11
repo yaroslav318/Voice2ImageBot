@@ -123,6 +123,8 @@ async function getChatCompletion(messages) {
     });
     const response = modelResponse.data.choices[0].message;
     console.log(response);
+    console.log(modelResponse.data);
+
     return response;
   } catch (e) {
     console.error(e);
