@@ -208,7 +208,7 @@ function App() {
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       if (isPromptOpen) {
-        e.preventDefault(); // Prevent form submission
+        e.preventDefault(); // Prevent from submission
         handlePromptSubmit(); // Programmatically click the "Rename" button
       } else {
         getMessages();

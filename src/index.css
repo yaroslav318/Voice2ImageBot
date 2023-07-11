@@ -10,38 +10,40 @@
   --quinary-color: rgb(149, 149, 248);
   --text-color: rgb(27, 21, 21);
   --textarea-backgroud: #8d85ab;
+  --textarea-color: rgb(27, 21, 21);
   --feed-li: linear-gradient(135deg, #89cbf7 0%, #c6b8f9 100%);
   --newchat: linear-gradient(to right, #d9afd9 0%, #97d9e1 100%);
   --newchat-hover: linear-gradient(to left, #d9afd9 0%, #97d9e1 100%);
   --textsmoke-color: grey;
   --historylihover-color: rgba(177, 248, 253, 0.597);
   --historyli-color: rgba(245, 221, 246, 0.848);
-  --textfeed-color: white;
+  --feed-text-color: white;
   --textborder-color: rgb(238, 228, 228);
   --info-containers: rgba(255, 255, 255, 0.2);
   --default-container: white;
-  --title-color1:rgb(123, 199, 250);
-  --title-color2:rgb(238, 154, 225);
+  --title-color1: rgb(123, 199, 250);
+  --title-color2: rgb(238, 154, 225);
   --title-color: rgb(123, 199, 250);
 }
 
 .app.dark {
   --primary-color: #464647;
-  --title-color1:rgb(51, 49, 51);
-  --title-color2:rgb(3, 3, 3);
+  --title-color1: rgb(51, 49, 51);
+  --title-color2: rgb(3, 3, 3);
   --title-color: rgb(51, 49, 51);
   --sidebar-color: #161414;
   --border-color: rgb(196, 192, 192);
   --quinary-color: rgb(224, 224, 232);
   --text-color: rgb(15, 14, 14);
   --textarea-backgroud: #303131;
+  --textarea-color: rgb(196, 192, 192);
   --feed-li: #262627f2;
   --newchat: linear-gradient(to right, #656165 0%, #404041 100%);
   --newchat-hover: linear-gradient(to left, #b4b0b4 0%, #424343 100%);
   --textsmoke-color: rgba(222, 222, 222, 0.71);
   --historylihover-color: rgba(162, 172, 173, 0.597);
   --historyli-color: rgba(213, 213, 213, 0.636);
-  --textfeed-color: white;
+  --feed-text-color: white;
   --textborder-color: rgba(250, 249, 249, 0.5);
   --info-containers: rgba(255, 255, 255, 0.2);
   --default-container: white;
@@ -49,21 +51,26 @@
 
 .app.blue {
   --primary-color: #007bff;
-  --title-color1:rgb(113, 182, 252);
-  --title-color2:rgb(31, 11, 211);
+  --title-color1: rgb(113, 182, 252);
+  --title-color2: rgb(31, 11, 211);
   --title-color: rgb(113, 182, 252);
   --sidebar-color: rgb(103, 211, 247);
   --quaternary-color: rgba(255, 255, 255, 0.968);
   --quinary-color: blue;
   --text-color: rgb(0, 0, 0);
   --textarea-backgroud: rgb(103, 211, 247);
+  --textarea-color: rgb(0, 0, 0);
   --feed-li: rgb(103, 211, 247);
   --newchat: linear-gradient(to right, #3175fcd7 0%, rgb(103, 211, 247) 100%);
-  --newchat-hover: linear-gradient(to left, #3175fcd7 0%, rgb(103, 211, 247) 100%);
+  --newchat-hover: linear-gradient(
+    to left,
+    #3175fcd7 0%,
+    rgb(103, 211, 247) 100%
+  );
   --textsmoke-color: rgb(227, 226, 226);
   --historylihover-color: #467ff0d7;
   --historyli-color: rgb(25, 179, 231);
-  --textfeed-color: white;
+  --feed-text-color: white;
   --textborder-color: rgb(249, 245, 245);
   --info-containers: rgba(255, 255, 255, 0.185);
   --default-container: rgb(255, 255, 255);
@@ -73,14 +80,15 @@
 
 .app.light {
   --primary-color: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-  --title-color1:rgb(203, 203, 205);
-  --title-color2:rgb(151, 151, 151);
+  --title-color1: rgb(203, 203, 205);
+  --title-color2: rgb(151, 151, 151);
   --title-color: rgb(203, 203, 205);
   --sidebar-color: #d2d3db;
   --quaternary-color: white;
   --quinary-color: blue;
   --text-color: rgb(29, 26, 26);
   --textarea-backgroud: #dcdede;
+  --textarea-color: rgb(29, 26, 26);
   --feed-li: #d2d3db;
   --newchat: white;
   --newchat-hover: white;
@@ -90,7 +98,7 @@
   --border-color: rgb(145, 145, 145);
   --placeholder: black;
   --textborder-color: rgba(81, 80, 80, 0.5);
-  --textfeed-color: rgb(29, 26, 26);
+  --feed-text-color: rgb(29, 26, 26);
   --info-containers: rgb(255, 255, 255);
   --default-container: rgb(148, 147, 147);
 }
@@ -113,8 +121,8 @@ body {
   flex-direction: row-reverse;
 }
 @font-face {
-  font-family: 'CustomFont';
-  src: url('./assets/mexcellent3d.ttf') format('truetype');
+  font-family: "CustomFont";
+  src: url("./assets/mexcellent3d.ttf") format("truetype");
 }
 
 .title {
@@ -122,7 +130,15 @@ body {
   font-size: 55px;
   margin-top: 10px;
   padding-bottom: 0px;
-  background: linear-gradient(to right, var(--title-color1), var(--title-color2),var(--title-color), var(--title-color1),var(--title-color2),var(--title-color));
+  background: linear-gradient(
+    to right,
+    var(--title-color1),
+    var(--title-color2),
+    var(--title-color),
+    var(--title-color1),
+    var(--title-color2),
+    var(--title-color)
+  );
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -141,7 +157,6 @@ body {
     background-position: 200% center;
   }
 }
-
 
 .side-bar {
   background: var(--sidebar-color);
@@ -274,13 +289,14 @@ textarea {
     rgba(0, 0, 0, 0.05) 0 -3px 5px;
   animation: pulse 1.5s infinite;
   z-index: 1;
+  color: var(--textarea-color);
 }
 textarea {
   transition: opacity 1s ease-in-out;
 }
 textarea:hover {
   cursor: text;
-  color: var(--text-color);
+  color: var(--textarea-color);
   background-color: var(--textarea-backgroud);
   box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);
 }
@@ -538,7 +554,7 @@ textarea::-webkit-scrollbar {
   height: 30px;
   font-size: 18px;
   font-weight: bold;
-  color: #092913;
+  color: #0b0b0b;
   text-transform: uppercase;
 }
 .message-container {
@@ -553,7 +569,7 @@ textarea::-webkit-scrollbar {
   align-items: center;
 }
 .feed pre span {
-  color: var(--textfeed-color);
+  color: var(--feed-text-color);
   font-size: 17px;
   text-align: left;
   font-family: "Narnoor";
@@ -945,3 +961,4 @@ input::placeholder {
 .items-wrapper .default {
   background-image: linear-gradient(0deg, #d9afd9 7%, #97d9e1 93%);
 }
+
