@@ -4,7 +4,7 @@ function DefaultPage() {
     <>
       <div className="default-container">
       <div className="welcome">
-        <h1>Welcome to Intellibot!</h1>
+        <h1>Welcome to Assistify!</h1>
         <p>Start a conversation by clicking the <b>"+ New Conversation"</b> button.</p>
         <p>To Generate image use Command <b>"create image:"</b> <br/></p>
       </div>
