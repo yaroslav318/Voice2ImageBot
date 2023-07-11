@@ -83,51 +83,7 @@ function App() {
       setCurrentTitle(modalValue);
     }
   };
-  /*
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  */
   const getMessages = async () => {
     if (!value) return; // Return if the input is empty
     setPreviousChats((prevChats) => [
