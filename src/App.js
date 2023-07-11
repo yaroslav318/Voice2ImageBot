@@ -36,7 +36,7 @@ function App() {
     setIsThemeMenuOpen((prevState) => !prevState);
   };
 
-  const createNewChat = () => {
+  const createNewChat = async () => {
     setIsDefaultPage(true); // Hide the default page
 
     const chatNumber = previousChats.length;
@@ -44,6 +44,15 @@ function App() {
     setMessage(null);
     setValue("");
     setCurrentTitle(uniqueTitle.substring(0, 10));
+    await fetch("http://localhost:8000/newSession", {
+      method: "POST",
+      body: JSON.stringify({
+        message: value,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   };
 
   const handleClick = (uniqueTitle) => {
@@ -356,8 +365,7 @@ function App() {
 
       <section
         className={`main ${isPromptOpen || isDeletePromptOpen ? "blur" : ""}`}
-      > 
-      
+      >
         <h1 className="title">INTELLIBOT</h1>
         {isDefaultPage ? (
           <DefaultPage />
