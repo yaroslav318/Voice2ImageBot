@@ -86,7 +86,14 @@ function App() {
 
   const getMessages = async () => {
     if (!value) return; // Return if the input is empty
-
+    setPreviousChats((prevChats) => [
+      ...prevChats,
+      {
+        title: currentTitle,
+        role: "user",
+        content: value,
+      },
+    ]);
     setIsLoading(true);
 
     const options = {
@@ -112,11 +119,6 @@ function App() {
           ...prevChats,
           {
             title: currentTitle,
-            role: "user",
-            content: value,
-          },
-          {
-            title: currentTitle,
             role: "assistant",
             content: "", // Empty content for the image message
             image: data.image, // Add the `image` property to the chat message
@@ -125,11 +127,6 @@ function App() {
       } else {
         setPreviousChats((prevChats) => [
           ...prevChats,
-          {
-            title: currentTitle,
-            role: "user",
-            content: value,
-          },
           {
             title: currentTitle,
             role: "assistant",
