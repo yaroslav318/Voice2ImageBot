@@ -3,11 +3,12 @@ function DefaultPage() {
   return (
     <>
       <div className="default-container">
+      <div className="welcome">
         <h1>Welcome to Intellibot!</h1>
-        
         <p>Start a conversation by clicking the <b>"+ New Conversation"</b> button.</p>
         <p>To Generate image use Command <b>"create image:"</b> <br/></p>
       </div>
+       
       <div className="info-container">
         <div className="info-plan">
           <div className="info-title">Capabilities</div>
@@ -19,8 +20,15 @@ function DefaultPage() {
               Ability to speak the response.
             </li>
             <li>
+            Features for image generation.
+            </li>
+            <li>
+            Voice Assisting features.
+            </li>
+            <li>
             Due to extensive training, it easily spot and reject unethical requests.
             </li>
+            
           </ul>
         </div>
         <div className="info-plan">
@@ -43,12 +51,13 @@ function DefaultPage() {
         <div className="info-plan">
           <div className="info-title">Constraints</div>
           <ul className="info-features">
-            <li> Sometimes inaccurate information may be generated &#8195;&#8195;&#8195; &#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;</li>
-            <li> Occasionally, harmful or biased content may be generated &#8195;&#8195;&#8195;&#8195;</li>
-            <li> Response chat limit : 100 words</li>
+            <li> Sometimes inaccurate information may be generated. &#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;</li>
+            <li> Occasionally, harmful or biased content may be generated. &#8195;&#8195;&#8195;&#8195; &#8195;&#8195;&#8195;&#8195; </li>
+            <li> Response chat limit:100 words. &#8195;&#8195;&#8195;&#8195;</li>
+            <li>Response time may be delayed</li>
           </ul>
         </div>
-      </div>
+      </div></div>
     </>
   );
 }

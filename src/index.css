@@ -62,11 +62,7 @@
   --textarea-color: rgb(0, 0, 0);
   --feed-li: rgb(103, 211, 247);
   --newchat: linear-gradient(to right, #3175fcd7 0%, rgb(103, 211, 247) 100%);
-  --newchat-hover: linear-gradient(
-    to left,
-    #3175fcd7 0%,
-    rgb(103, 211, 247) 100%
-  );
+  --newchat-hover: linear-gradient(to left,#3175fcd7 0%,rgb(103, 211, 247) 100%);
   --textsmoke-color: rgb(227, 226, 226);
   --historylihover-color: #467ff0d7;
   --historyli-color: rgb(25, 179, 231);
@@ -128,20 +124,13 @@ body {
 .title {
   font-family: "CustomFont", sans-serif;
   font-size: 55px;
-  margin-top: 10px;
+  margin-top: 50px;
   padding-bottom: 0px;
-  background: linear-gradient(
-    to right,
-    var(--title-color1),
-    var(--title-color2),
-    var(--title-color),
-    var(--title-color1),
-    var(--title-color2),
-    var(--title-color)
-  );
+  background: linear-gradient( to right, var(--title-color1), var(--title-color2), var(--title-color), var(--title-color1), var(--title-color2), var(--title-color) );
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
+  text-align: center;
   animation: wave-animation 6s infinite linear;
   background-size: 200% auto;
 }
@@ -179,11 +168,12 @@ body {
   background: var(--primary-color);
   height: 100vh;
   font-family: "Narnoor";
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  grid-template-rows: 10vh 75vh 10vh 1vh;;
+  /* flex-direction: column; */
+  /* justify-content: space-between; */
   align-items: center;
-  flex: 1;
+  flex:  1;
 }
 
 button {
@@ -251,7 +241,8 @@ nav {
   bottom: 0;
 }
 .info {
-  color: rgba(225, 225, 225, 0.5);
+  color: rgba(4, 4, 4, 0.5);
+  font-weight: bold;
   font-size: 11px;
   padding: 10px;
 }
@@ -261,6 +252,9 @@ nav {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  grid-row: 4;
+  color: black;
+  margin-bottom: -15px;
 }
 .input-container {
   position: relative;
@@ -364,7 +358,7 @@ textarea::-webkit-scrollbar {
   bottom: 4px;
   right: 24px;
   font-size: 35px;
-  height: 45px;
+  height: 47px;
   cursor: pointer;
   background-color: transparent;
   color: rgb(215, 209, 209);
@@ -433,9 +427,14 @@ textarea::-webkit-scrollbar {
   font-size: 35px;
   font-family: "Narnoor", sans-serif;
   text-align: center;
-  margin-top: -150px;
+  height: 100%;
+  display: grid;
+  
 }
-
+.welcome{
+  grid-row: 1;
+  max-height:45%
+}
 .default-container p {
   color: var(--default-container);
   font-size: 18px;
@@ -454,10 +453,10 @@ textarea::-webkit-scrollbar {
 }
 
 .info-container {
-  margin-top: -100px;
+  margin-left: 12%;
   display: flex;
   justify-content: space-evenly;
-  height: 36%;
+  height: 100%;
   gap: 2rem;
   width: 78%;
   overflow: auto;
@@ -472,7 +471,7 @@ textarea::-webkit-scrollbar {
   background-color: var(--info-containers);
   flex: 1 1;
   border-radius: 15%;
-  height: 70%;
+  height: 80%;
   overflow: auto;
 }
 .info-plan::-webkit-scrollbar {
@@ -523,9 +522,10 @@ textarea::-webkit-scrollbar {
 .feed {
   position: relative;
   overflow: auto;
-  width: 90%;
+  width: 95%;
+  height: 98%;
   padding: 0;
-  top: -50px;
+  margin-left: 5%;
 }
 .feed::-webkit-scrollbar {
   display: none;
