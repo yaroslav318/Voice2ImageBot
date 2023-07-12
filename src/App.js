@@ -363,7 +363,7 @@ function App() {
       <section
         className={`main ${isPromptOpen || isDeletePromptOpen ? "blur" : ""}`}
       >
-        <h1 className="title">Assistify</h1>
+        <h1 className="title">INTELLIBOT</h1>
         {isDefaultPage ? (
           <DefaultPage />
         ) : (

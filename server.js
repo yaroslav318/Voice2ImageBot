@@ -69,7 +69,7 @@ async function generateImage(sentence) {
     body: JSON.stringify({
       prompt: sentence,
       n: 1,
-      size: "512x512",
+      size: "1024x1024",
     }),
   };
 
