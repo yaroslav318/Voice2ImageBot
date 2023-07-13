@@ -86,32 +86,7 @@ async function generateImage(sentence) {
   }
 }
 
-// async function getChatCompletion(message) {
-//   const options = {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//       Authorization: `Bearer ${process.env.API_KEY}`,
-//     },
-//     body: JSON.stringify({
-//       model: "gpt-3.5-turbo",
-//       messages: [{ role: "user", content: message }],
-//       max_tokens: 50,
-//     }),
-//   };
 
-//   const response = await fetch(
-//     "https://api.openai.com/v1/chat/completions",
-//     options
-//   );
-//   const data = await response.json();
-//   console.log("Response data:", data);
-//   if (data.choices && data.choices.length > 0) {
-//     return data.choices[0].message;
-//   } else {
-//     throw new Error("Chat completion failed");
-//   }
-// }
 
 async function getChatCompletion(messages) {
   try {
