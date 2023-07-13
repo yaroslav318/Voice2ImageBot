@@ -119,7 +119,7 @@ async function getChatCompletion(messages) {
     const modelResponse = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: messages.map((msg) => ({ role: "user", content: msg })),
-      max_tokens: 50,
+      max_tokens: 2000,
     });
     const response = modelResponse.data.choices[0].message;
     console.log(response);
