@@ -1,5 +1,4 @@
 const { OpenAIApi, Configuration } = require("openai");
-const fetch = require("isomorphic-fetch");
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
