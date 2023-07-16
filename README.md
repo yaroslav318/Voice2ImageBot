@@ -1,70 +1,64 @@
-# Getting Started with Create React App
+# INTELLIBOT
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
 
-## Available Scripts
+This project combines the power of OpenAI's GPT-3.5 Turbo and DALL·E models to enable chat-based conversations and image generation. It also incorporates additional features such as voice listening, speech synthesis, themes, and an interactive user interface. This README file provides instructions on setting up and running the project.
 
-In the project directory, you can run:
+## Purpose
 
-### `npm start`
+The purpose of this project is to showcase the capabilities of OpenAI's language and image models and provide an interactive and seamless experience for users. By leveraging the OpenAI API, users can have conversations with the chatbot, generate images based on prompts, and interact with a user-friendly interface. The additional features of voice listening, speech synthesis, and themes enhance the overall user experience.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Run Method
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+To run the project locally, follow these steps:
 
-### `npm test`
+1. **Download Node.js**: Download and install Node.js from the official website: [https://nodejs.org](https://nodejs.org).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **Install Visual Studio Code**: Download and install Visual Studio Code (VS Code) from the official website: [https://code.visualstudio.com](https://code.visualstudio.com).
 
-### `npm run build`
+3. **Download Project Folder**: Download the project folder from the repository and extract it to a location of your choice.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. **Open the Project in VS Code**: Open Visual Studio Code and navigate to the project folder by selecting "File" -> "Open Folder" in the menu or using the shortcut `Ctrl + K Ctrl + O`. Select the project folder that you extracted in the previous step.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+5. **Install Dependencies**: Open a terminal in VS Code by selecting "View" -> "Terminal" in the menu or using the shortcut `Ctrl + ` `. Run the following command to install the project dependencies:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+            npm install
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+6. **Configure API Key**: Create a file named `.env` in the project folder and add the following line to it, replacing `"Paste your open ai apikey"` with your actual OpenAI API key:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+            API_KEY="Paste your open ai apikey"
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+7. **Install Additional Packages**: Run the following command in the terminal to install additional packages required by the project:
 
-## Learn More
+            npm install cors dotenv express morgan node-fetch nodemon openai react react-dom react-modal react-scripts web-vitals
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+8. **Run Frontend and Backend**: Open two separate terminals in VS Code. In one terminal, run the following command to start the frontend:
 
-### Code Splitting
+            npm run start:frontend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+In the other terminal, run the following command to start the backend:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+               npm run start:backend
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+This will start the frontend and backend servers.
 
-### Advanced Configuration
+9. **Access the Project**: Once the servers are running, you can access the project by opening a web browser and navigating to `http://localhost:3000`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+10. **Explore the Project**: You are now ready to interact with the chatbot, generate images, and explore the additional features of voice listening, speech synthesis, and themes. Follow the on-screen instructions to navigate the interface and enjoy the project.
 
-### Deployment
+## Output GIF and Photos
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- [Sample Output GIFs](https://example.com/output-gifs)
+- [Sample Output Photos](https://example.com/output-photos)
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+The project generates various outputs, including GIFs and photos. The amount of space required for these outputs may vary depending on the specific usage. Ensure that you have sufficient disk space to accommodate the generated files. It is recommended to monitor the space usage periodically and clean up unnecessary outputs to free up disk space if needed.
+
+Please note that the size of the outputs can be influenced by factors such as the complexity of the generated content, the duration of conversations, and the number of image generation requests made.
