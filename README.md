@@ -53,10 +53,10 @@ This will start the frontend and backend servers.
 
 ## Output GIF and Photos
 
-- [Sample Output GIFs](./src/assets/images/output%20(2).gif)
-- [Sample Output Photos](./src/assets/images/output.png)
+- ![Sample Output GIFs](./src/assets/images/output%20(2).gif)
+- ![Sample Output Photos](./src/assets/images/output.png)
 
-- [Sample Output Photos](./src/assets/images/output1.png)
+- ![Sample Output Photos](./src/assets/images/output1.png)
 
 
 The project generates various outputs, including GIFs and photos. The amount of space required for these outputs may vary depending on the specific usage. Ensure that you have sufficient disk space to accommodate the generated files. It is recommended to monitor the space usage periodically and clean up unnecessary outputs to free up disk space if needed.
